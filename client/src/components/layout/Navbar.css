@@ -1,0 +1,22 @@
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color:aliceblue;
+}
+
+h1 {
+  color: grey;
+}
+
+.links {
+  margin-left: auto;
+}
+
+a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
