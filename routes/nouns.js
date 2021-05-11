@@ -4,15 +4,27 @@ const router = express.Router()
 const Noun = require('../models/Noun')
 
 
-// Get nouns collection
+// Returns a list with all the noun categories
 router.get('/', async (req, res) => {
   try {
-    const nouns = await Noun.find()
     const list = await Noun.distinct('category')
 
-    res.json({nouns, list})
+    res.json(list)
   } catch (err) {
-    console.log(err)
+    res.status(400).json('Server Error')
+  }
+})
+
+// Returns the requested collection and also the data that populates the sidebar
+router.get('/:collection', async (req, res) => {
+  const paramCollection = req.params.collection
+
+  try {
+    const list = await Noun.distinct('category')
+    const category = await Noun.find({category: paramCollection })
+
+    res.json({list, category})
+  } catch (err) {
     res.status(400).json('Server Error')
   }
 })

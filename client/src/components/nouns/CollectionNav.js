@@ -1,19 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 
-const CollectionNav = (props) => {
-  const {list, collections } = props
-  console.log(list)
-  console.log(collections)
+const CollectionNav = ({ list }) => {
+
+  let { url } = useRouteMatch()
 
   return ( 
     <nav className="aside-nav">
       <h2>Collection</h2>
-      <Link to="/nouns/create">Create</Link>
+      <Link to={`${url}/create`}>Create</Link>
       <ul>
       {list.map((item) => {
         return (
           <li key={item}>
-            <Link to={`/nouns/${item}`}>
+            <Link to={`${url}/${item}`}>
               { item }
             </Link>
           </li>
