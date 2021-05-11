@@ -5,7 +5,12 @@ import './Create.css'
 const Create = () => {
 
   const [collectionName, setCollectionName] = useState('')
-  const [inputList, setInputList] = useState([{ english: "", singular: "", plural:"" }]);
+  const [inputList, setInputList] = useState(
+    [
+      { english: "", singular: "", plural:"" },
+      { english: "", singular: "", plural:"" },
+      { english: "", singular: "", plural:"" }
+    ]);
 
   // Handle collection name input
   const handleCollectionName = (e) => {
@@ -37,7 +42,7 @@ const Create = () => {
   }
 
   // Handle submit
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault()
 
     const config = {
@@ -48,12 +53,11 @@ const Create = () => {
 
     const body = JSON.stringify({collectionName, inputList})
     
-    try {
-      const res = await axios.post('/nouns/add', body, config)
-
-    } catch (err) {
-      console.log(err)
-    } 
+    axios.post('/nouns/create', body, config)
+      .then(res => {
+        window.location = '/nouns'
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -80,43 +84,43 @@ const Create = () => {
           <tbody>
           {inputList.map((x, i) => {
             return (
-              <tr key={Math.random()}>
+              <tr key={`ren${i+1}`}>
                 <td>
-                <input
-                  className="input" 
-                  type="text" 
-                  name="english" 
-                  value={x.english}
-                  onChange={e => handleInputChange(e, i)}
-                />
+                  <input
+                    className="input" 
+                    type="text" 
+                    name="english"
+                    value={x.english}
+                    onChange={e => handleInputChange(e, i)}
+                  />
                 </td>
                 <td>
-                <input
-                  className="input" 
-                  type="text" 
-                  name="singular" 
-                  value={x.singular}
-                  onChange={e => handleInputChange(e, i)}
-                />
+                  <input
+                    className="input" 
+                    type="text" 
+                    name="singular" 
+                    value={x.singular}
+                    onChange={e => handleInputChange(e, i)}
+                  />
                 </td>
                 <td>
-                <input
-                  className="input" 
-                  type="text" 
-                  name="plural" 
-                  value={x.plural}
-                  onChange={e => handleInputChange(e, i)}
-                />
+                  <input
+                    className="input" 
+                    type="text" 
+                    name="plural" 
+                    value={x.plural}
+                    onChange={e => handleInputChange(e, i)}
+                  />
                 </td>
                 <td className="btn-box">
                   { inputList.length !== 1 
                     && 
-                  <button onClick={() => handleRemoveClick(i)}>
+                  <div className="btn" onClick={() => handleRemoveClick(i)}>
                     Remove
-                  </button> }
+                  </div> }
                   { inputList.length - 1 === i 
                     && 
-                  <button onClick={handleAddClick}>Add</button> }
+                  <div className="btn" onClick={handleAddClick}>Add</div> }
                 </td>
               </tr>
             )
@@ -124,7 +128,7 @@ const Create = () => {
           </tbody>
         </table>
 
-        <button type="submit" value="submit">Add Collection</button>
+        <input type="submit" value="Add Collection" />
       </form>
     </Fragment>
   )

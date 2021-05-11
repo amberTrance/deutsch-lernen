@@ -11,3 +11,11 @@
   margin: 40px auto;
   padding: 20px;
 }
+
+.container {
+  display: flex;
+}
+
+.aside-nav {
+  margin-left: auto;
+}

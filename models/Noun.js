@@ -4,19 +4,23 @@ const NounSchema = mongoose.Schema({
   category: {
 		type: String,
 		required: true,
+		trim: true
 	},
 	english: {
 		type: String,
 		required: true,
-		unique: true
+		unique: true,
+		trim: true
 	},
 	singular: {
 		type: String,
-		required: true
+		required: true,
+		trim: true
 	},
 	plural: {
 		type: String,
-		required: true
+		required: true,
+		trim: true
 	},
 	right: {
 		type: Number,
@@ -28,6 +32,6 @@ const NounSchema = mongoose.Schema({
 	}
 }, { timestamps: true })
 
-const Noun = mongoose.model('noun', NounSchema)
+const Noun = mongoose.model('Noun', NounSchema)
 
 module.exports = Noun

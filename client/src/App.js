@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Home from './components/layout/Home'
-import CreateNouns from './components/nouns/Create'
+import Nouns from './components/nouns/Nouns'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/create' component={CreateNouns} />
+            <Route exact path='/nouns' component={Nouns} />
           </Switch>
         </div>
       </div>
