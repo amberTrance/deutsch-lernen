@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
 * {
@@ -16,6 +15,89 @@
   display: flex;
 }
 
+
+/* Table CSS */
+table {
+  margin-top: 30px;
+}
+
+td, th {
+  padding: 6px;
+}
+
+th {
+  font-size: 18px;
+  padding: 25px;
+}
+
+input, .btn {
+  margin-right: 15px;
+  margin-top: 0px;
+}
+
+input {
+  outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  font-size: 17px;
+}
+
+table p {
+  font-size: 17px;
+}
+
+.btn-box {
+  display: flex;
+}
+
+.btn {
+  border: 2px grey solid;
+  padding: 3px 10px;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Input Test verification */
+.correct {
+  background-color: rgb(167, 231, 167);
+}
+
+.false {
+  background-color: rgb(255, 207, 74);
+}
+
+/* Collection list */
 .aside-nav {
   margin-left: auto;
+  padding: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.aside-nav a {
+  margin: 0px;
+}
+
+li {
+  padding: 4px 0px;
+  text-align: center;
+}
+
+/* Create button */
+.create {
+  font-size: 20px;
+  padding: 10px 15px;
+}
+
+/* Collection buttons */
+.btn-container {
+  margin: 20px;
+  display: flex;
 }

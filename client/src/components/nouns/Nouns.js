@@ -2,7 +2,6 @@ import CollectionNav from './CollectionNav'
 import useFetchList from '../useFetchList'
 
 const Nouns = () => {
-  
   const { data: list } = useFetchList('/nouns')
 
   return (

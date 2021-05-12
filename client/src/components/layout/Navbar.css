@@ -4,7 +4,7 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  background-color:aliceblue;
+  border-bottom: 4px solid aliceblue;
 }
 
 h1 {
@@ -19,4 +19,5 @@ a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
+  font-size: 20px;
 }

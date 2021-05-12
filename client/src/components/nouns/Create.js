@@ -1,8 +1,12 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-import './Create.css'
+import useFetch from '../useFetchList'
+import CollectionNav from './CollectionNav'
 
 const Create = () => {
+
+  // Fetch collection list
+  const { data: list } = useFetch('/nouns')
 
   const [collectionName, setCollectionName] = useState('')
   const [inputList, setInputList] = useState(
@@ -61,76 +65,79 @@ const Create = () => {
   }
 
   return (
-    <Fragment>
-      <h2>Create New Collection</h2>
-      <form onSubmit={e => onSubmit(e)}>
-        <h4>Collection Name: </h4>
-        <input 
-          type="text" 
-          name="collectionName"
-          value={collectionName}
-          onChange={handleCollectionName}
-        />
-        
-        <table>
-          <thead>
-            <tr>
-              <th>English</th>
-              <th>Singular</th>
-              <th>Plural</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-          {inputList.map((x, i) => {
-            return (
-              <tr key={`ren${i+1}`}>
-                <td>
-                  <input
-                    className="input" 
-                    type="text" 
-                    name="english"
-                    value={x.english}
-                    onChange={e => handleInputChange(e, i)}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input" 
-                    type="text" 
-                    name="singular" 
-                    value={x.singular}
-                    onChange={e => handleInputChange(e, i)}
-                  />
-                </td>
-                <td>
-                  <input
-                    className="input" 
-                    type="text" 
-                    name="plural" 
-                    value={x.plural}
-                    onChange={e => handleInputChange(e, i)}
-                  />
-                </td>
-                <td className="btn-box">
-                  { inputList.length !== 1 
-                    && 
-                  <div className="btn" onClick={() => handleRemoveClick(i)}>
-                    Remove
-                  </div> }
-                  { inputList.length - 1 === i 
-                    && 
-                  <div className="btn" onClick={handleAddClick}>Add</div> }
-                </td>
+    <div className="container">
+      <div>
+        <h2 className="title">Create New Collection</h2>
+        <form onSubmit={e => onSubmit(e)} autocomplete="off">
+          <h4>Collection Name: </h4>
+          <input 
+            type="text" 
+            name="collectionName"
+            value={collectionName}
+            onChange={handleCollectionName}
+          />
+          
+          <table>
+            <thead>
+              <tr>
+                <th>English</th>
+                <th>Singular</th>
+                <th>Plural</th>
+                <th></th>
               </tr>
-            )
-          })}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            {inputList.map((x, i) => {
+              return (
+                <tr key={`ren${i+1}`}>
+                  <td>
+                    <input
+                      className="input" 
+                      type="text" 
+                      name="english"
+                      value={x.english}
+                      onChange={e => handleInputChange(e, i)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      className="input" 
+                      type="text" 
+                      name="singular" 
+                      value={x.singular}
+                      onChange={e => handleInputChange(e, i)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      className="input" 
+                      type="text" 
+                      name="plural" 
+                      value={x.plural}
+                      onChange={e => handleInputChange(e, i)}
+                    />
+                  </td>
+                  <td className="btn-box">
+                    { inputList.length !== 1 
+                      && 
+                    <div className="btn" onClick={() => handleRemoveClick(i)}>
+                      Remove
+                    </div> }
+                    { inputList.length - 1 === i 
+                      && 
+                    <div className="btn" onClick={handleAddClick}>Add</div> }
+                  </td>
+                </tr>
+              )
+            })}
+            </tbody>
+          </table>
 
-        <input type="submit" value="Add Collection" />
-      </form>
-    </Fragment>
+          <input type="submit" value="Add Collection" />
+        </form>
+      </div>
+      <CollectionNav list={list}/>
+    </div>
   )
 }
  

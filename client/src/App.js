@@ -4,6 +4,7 @@ import Home from './components/layout/Home'
 import Nouns from './components/nouns/Nouns'
 import Create from './components/nouns/Create'
 import Collection from './components/nouns/Collection'
+import EnDe from './components/nouns/EnDe'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path='/nouns' component={Nouns}/>
             <Route exact path='/nouns/create' component={Create} />
             <Route exact path='/nouns/:collection' component={Collection} />
+            <Route exact path='/nouns/:collection/en-de' component={EnDe} />
           </Switch>
         </div>
       </div>
