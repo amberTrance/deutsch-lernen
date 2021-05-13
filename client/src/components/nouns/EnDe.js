@@ -80,10 +80,10 @@ const EnDe = () => {
 
   return ( 
     <div className="container">
-      <div>
+      <div className="leftContent">
         <Buttons collection={ collection }/>
         <h2 className="title">Translate into german</h2>
-        <form onSubmit={e => onSubmit(e)} autocomplete="off">
+        <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
             name="collectionName"
@@ -98,7 +98,6 @@ const EnDe = () => {
                 <th>English</th>
                 <th>Singular</th>
                 <th>Plural</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -138,7 +137,12 @@ const EnDe = () => {
             </tbody>
           </table>
 
-          <input type="submit" value="Submit" />
+          <div className="submit-box">
+            <input 
+              type="submit" 
+              value="Submit" 
+              className="submit"/>
+            </div>
         </form>
       </div>
       <CollectionNav list={list}/>

@@ -10,7 +10,7 @@ const Collection = () => {
 
   return (
     <div className="container">
-      <div>
+      <div className="leftContent">
       <Buttons collection={collection}/>
       <h2 className="title">{collection}</h2>
         <table>

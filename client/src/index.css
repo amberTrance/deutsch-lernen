@@ -6,7 +6,7 @@
 }
 
 .content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -15,6 +15,13 @@
   display: flex;
 }
 
+/* Content in the left div */
+.leftContent {
+  min-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* Table CSS */
 table {
@@ -43,10 +50,6 @@ input {
   font-size: 17px;
 }
 
-table p {
-  font-size: 17px;
-}
-
 .btn-box {
   display: flex;
 }
@@ -59,6 +62,20 @@ table p {
 .title {
   margin-bottom: 30px;
   text-align: center;
+}
+
+.submit-box {
+  text-align: center;
+}
+
+.submit {
+  border: 2px black solid;
+  margin:20px 0px;
+  padding: 10px;
+}
+
+.collectionInput {
+  text-align: center
 }
 
 /* Input Test verification */
@@ -77,8 +94,8 @@ table p {
 }
 
 ul {
-  list-style-type: none;
-  padding: 0px;
+  list-style-type: square;
+  color: grey;
 }
 
 .aside-nav a {
@@ -87,7 +104,6 @@ ul {
 
 li {
   padding: 4px 0px;
-  text-align: center;
 }
 
 /* Create button */
@@ -100,4 +116,25 @@ li {
 .btn-container {
   margin: 20px;
   display: flex;
+  justify-content: center;
+}
+
+.btn-container button {
+  padding: 10px 15px;
+}
+
+.btn-container a {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Messages */
+.msg {
+  padding: 15px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.error {
+  background-color: orange;
 }

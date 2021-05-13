@@ -15,6 +15,8 @@ router.get('/', async (req, res) => {
   }
 })
 
+
+
 // Returns the requested collection and also the data that populates the sidebar
 router.get('/:collection', async (req, res) => {
   const paramCollection = req.params.collection
@@ -29,31 +31,49 @@ router.get('/:collection', async (req, res) => {
   }
 })
 
+
+
 // Add nouns collection
 router.post('/create', async (req, res) => {
+  // Return an errors array if received data is incorrect
   const {collectionName, inputList} = req.body
 
   inputList.forEach(async item => {
-    let word = await Noun.findOne({ english: item.english })
+
+    let english = item.english
+    let singular = item.singular
+    let plural = item.plural
+
+    // Verifies if after triming, an input field is empty
+    if (
+      collectionName.trim() === '' ||
+      english.trim() === '' ||
+      singular.trim() === '' ||
+      plural.trim() === ''
+    ) {
+      return res.status(400).json({errors: [{ msg: 'Fields cannot be empty!'}]})
+    }
+
+    let word = await Noun.findOne({ english: english })
 
     if (word) {
       return res.status(400).json(
-        { msg: `${item.english} already exists in the ${word.category} collection`}
+        { errors: [{ msg: `The noun '${item.english}' already exists in the '${word.category}' collection!`}] }
       )
     }
 
     word = new Noun ({
       category: collectionName,
-      english: item.english,
-      singular: item.singular,
-      plural: item.plural
+      english: english,
+      singular: singular,
+      plural: plural
     })
 
     try {
       await word.save()
-      res.json('Nouns successfully added!')
+      return res.json('Nouns successfully added!')
     } catch (err) {
-      return res.status(400).json(`Error: ${err}`)
+      return res.status(400).json({ errors: [{ msg: 'Server Error'}]})
     }
   })
 

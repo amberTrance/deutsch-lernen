@@ -13,7 +13,7 @@ const Buttons = ({collection}) => {
         <button>de-en</button>
       </Link>
       <Link to={`/nouns/${collection}/edit`}>
-        <button>edit</button>
+        <button>Edit</button>
       </Link>
     </div> 
   );

@@ -2,7 +2,7 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   border-bottom: 4px solid aliceblue;
 }
@@ -19,5 +19,5 @@ a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
-  font-size: 20px;
+  font-size: 18px;
 }

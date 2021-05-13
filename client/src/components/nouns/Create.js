@@ -8,6 +8,7 @@ const Create = () => {
   // Fetch collection list
   const { data: list } = useFetch('/nouns')
 
+  const [errors, setErrors] = useState([])
   const [collectionName, setCollectionName] = useState('')
   const [inputList, setInputList] = useState(
     [
@@ -59,23 +60,32 @@ const Create = () => {
     
     axios.post('/nouns/create', body, config)
       .then(res => {
-        window.location = '/nouns'
+        window.location = `/nouns/${collectionName}`
       })
-      .catch(err => console.log(err))
+      .catch(err => setErrors(err.response.data.errors))
   }
 
   return (
     <div className="container">
-      <div>
+      <div className="leftContent">
+        { errors && errors.map((error,i) => 
+          <div 
+            className="msg error"
+            key={`${i}-error`}>{error.msg}
+          </div>
+        ) }
         <h2 className="title">Create New Collection</h2>
-        <form onSubmit={e => onSubmit(e)} autocomplete="off">
-          <h4>Collection Name: </h4>
-          <input 
-            type="text" 
-            name="collectionName"
-            value={collectionName}
-            onChange={handleCollectionName}
-          />
+        <form onSubmit={e => onSubmit(e)} autoComplete="off">
+          <h3 className="title">Collection Name: </h3>
+          <div className="collectionInput">
+          <input
+              type="text" 
+              name="collectionName"
+              value={collectionName}
+              onChange={handleCollectionName}
+              required
+            />
+          </div>
           
           <table>
             <thead>
@@ -97,6 +107,7 @@ const Create = () => {
                       name="english"
                       value={x.english}
                       onChange={e => handleInputChange(e, i)}
+                      required
                     />
                   </td>
                   <td>
@@ -106,6 +117,7 @@ const Create = () => {
                       name="singular" 
                       value={x.singular}
                       onChange={e => handleInputChange(e, i)}
+                      required
                     />
                   </td>
                   <td>
@@ -115,6 +127,7 @@ const Create = () => {
                       name="plural" 
                       value={x.plural}
                       onChange={e => handleInputChange(e, i)}
+                      required
                     />
                   </td>
                   <td className="btn-box">
@@ -132,8 +145,13 @@ const Create = () => {
             })}
             </tbody>
           </table>
-
-          <input type="submit" value="Add Collection" />
+    
+          <div className="submit-box">
+            <input 
+              type="submit" 
+              value="Add Collection"
+              className="submit"/>
+          </div>
         </form>
       </div>
       <CollectionNav list={list}/>
