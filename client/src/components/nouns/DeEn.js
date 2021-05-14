@@ -4,7 +4,7 @@ import useFetch from '../useFetchCategory'
 import CollectionNav from './CollectionNav'
 import Buttons from './Buttons'
 
-const EnDe = () => {
+const DeEn = () => {
   // Fetch url parameter that contains the collection name
   const { collection } = useParams()
 
@@ -23,11 +23,10 @@ const EnDe = () => {
     setInputList(category.map(noun => {
       return {
         id: noun._id, 
-        english: noun.english, 
-        singular: '',
-        responseSing: 'input',
-        plural: '',
-        responsePl: 'input'
+        english: '', 
+        response: 'input',
+        singular: noun.singular,
+        plural: noun.plural
       }
     }))
   }, [category])
@@ -54,19 +53,11 @@ const EnDe = () => {
     const newList = [...inputList]
 
     inputList.forEach((noun,i) => {
-      if (noun.singular !== '') {
-        if (noun.singular === category[i].singular) {
-          newList[i].responseSing = 'input correct'
+      if (noun.english !== '') {
+        if (noun.english === category[i].english) {
+          newList[i].response = 'input correct'
         } else {
-          newList[i].responseSing = 'input false'
-        }
-      }
-
-      if (noun.plural !== '') {
-        if (noun.plural === category[i].plural) {
-          newList[i].responsePl = "input correct"
-        } else {
-          newList[i].responsePl = "input false"
+          newList[i].response = 'input false'
         }
       }
     })
@@ -78,7 +69,7 @@ const EnDe = () => {
     <div className="container">
       <div className="leftContent">
         <Buttons collection={ collection }/>
-        <h2 className="title">Translate into german</h2>
+        <h2 className="title">Translate into english</h2>
         <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
@@ -104,26 +95,26 @@ const EnDe = () => {
                     <p
                       className="input" 
                       type="text" 
-                      name="english"
+                      name="singular"
                     >
-                      {noun.english}
+                      {noun.singular}
+                    </p>
+                  </td>
+                  <td>
+                    <p
+                      className="input" 
+                      type="text" 
+                      name="plural"
+                    >
+                      {noun.plural}
                     </p>
                   </td>
                   <td>
                     <input
-                      className={noun.responseSing}
+                      className={noun.response}
                       type="text" 
-                      name="singular"
-                      value={noun.singular}
-                      onChange={e => handleInputChange(e, i)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      className={noun.responsePl}
-                      type="text" 
-                      name="plural"
-                      value={noun.plural}
+                      name="english"
+                      value={noun.english}
                       onChange={e => handleInputChange(e, i)}
                     />
                   </td>
@@ -146,4 +137,4 @@ const EnDe = () => {
   )
 }
  
-export default EnDe;
+export default DeEn;

@@ -3,8 +3,9 @@ import { useParams } from 'react-router'
 import useFetch from '../useFetchCategory'
 import CollectionNav from './CollectionNav'
 import Buttons from './Buttons'
+import axios from 'axios'
 
-const EnDe = () => {
+const Edit = () => {
   // Fetch url parameter that contains the collection name
   const { collection } = useParams()
 
@@ -17,19 +18,12 @@ const EnDe = () => {
   // Create a state for Table display
   const [inputList, setInputList] = useState([])
 
-  // Set the inputList state to the modified category data
+
+  // Set inputList same as categorz
   useEffect(() => {
 
-    setInputList(category.map(noun => {
-      return {
-        id: noun._id, 
-        english: noun.english, 
-        singular: '',
-        responseSing: 'input',
-        plural: '',
-        responsePl: 'input'
-      }
-    }))
+    setInputList(category)
+
   }, [category])
 
 
@@ -47,31 +41,33 @@ const EnDe = () => {
     setInputList(newList)
   }
 
-  // On Submit
-  const onSubmit = e => {
-    e.preventDefault()
+  // On Edit
+  const handleEditClick = (i) => {
+    const noun = inputList[i]
 
-    const newList = [...inputList]
-
-    inputList.forEach((noun,i) => {
-      if (noun.singular !== '') {
-        if (noun.singular === category[i].singular) {
-          newList[i].responseSing = 'input correct'
-        } else {
-          newList[i].responseSing = 'input false'
-        }
+    const config = {
+      headers: {
+        'Content-Type' : 'application/json'
       }
+    }
 
-      if (noun.plural !== '') {
-        if (noun.plural === category[i].plural) {
-          newList[i].responsePl = "input correct"
-        } else {
-          newList[i].responsePl = "input false"
-        }
-      }
-    })
+    const body = JSON.stringify({noun})
 
-    setInputList(newList)
+    axios.put('/nouns', body, config)
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
+
+  }
+
+  // On Delete
+  const handleDeleteClick = (i) => {
+    const noun = inputList[i]
+
+    const id = noun._id
+
+    axios.delete(`/nouns/${id}`)
+      .then(res => window.location = `/nouns/${collection}/edit`)
+      .catch(err => console.log(err))
   }
 
   return ( 
@@ -79,7 +75,7 @@ const EnDe = () => {
       <div className="leftContent">
         <Buttons collection={ collection }/>
         <h2 className="title">Translate into german</h2>
-        <form onSubmit={e => onSubmit(e)} autoComplete="off">
+        <form autoComplete="off">
           <h2 
             type="text" 
             name="collectionName"
@@ -94,6 +90,7 @@ const EnDe = () => {
                 <th>English</th>
                 <th>Singular</th>
                 <th>Plural</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -101,13 +98,13 @@ const EnDe = () => {
               return (
                 <tr key={noun.id}>
                   <td>
-                    <p
-                      className="input" 
+                    <input
+                      className={noun.responseSing}
                       type="text" 
                       name="english"
-                    >
-                      {noun.english}
-                    </p>
+                      value={noun.english}
+                      onChange={e => handleInputChange(e, i)}
+                    />
                   </td>
                   <td>
                     <input
@@ -127,18 +124,27 @@ const EnDe = () => {
                       onChange={e => handleInputChange(e, i)}
                     />
                   </td>
+                  <td className="btn-box">
+                    <div 
+                      className="btn" 
+                      onClick={() => handleEditClick(i)}
+                      key={`edit-${noun.english}`}
+                    >
+                      Edit
+                    </div>
+                    <div 
+                      className="btn" 
+                      onClick={() => handleDeleteClick(i)}
+                      key={`delete-${noun.english}`}
+                    >
+                      Delete
+                    </div>
+                  </td>
                 </tr>
               )
             })}
             </tbody>
           </table>
-
-          <div className="submit-box">
-            <input 
-              type="submit" 
-              value="Submit" 
-              className="submit"/>
-            </div>
         </form>
       </div>
       <CollectionNav list={list}/>
@@ -146,4 +152,4 @@ const EnDe = () => {
   )
 }
  
-export default EnDe;
+export default Edit;

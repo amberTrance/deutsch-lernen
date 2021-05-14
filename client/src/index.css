@@ -7,6 +7,7 @@
 
 .content {
   max-width: 1400px;
+  min-height: 60vh;
   margin: 40px auto;
   padding: 20px;
 }
@@ -28,7 +29,7 @@ table {
   margin-top: 30px;
 }
 
-td, th {
+td {
   padding: 6px;
 }
 

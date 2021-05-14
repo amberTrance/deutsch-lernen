@@ -1,3 +1,4 @@
+const e = require('express')
 const express = require('express')
 const router = express.Router()
 
@@ -23,7 +24,9 @@ router.get('/:collection', async (req, res) => {
 
   try {
     const list = await Noun.distinct('category')
-    const category = await Noun.find({category: paramCollection })
+    const category = await Noun.find(
+      {category: paramCollection }, {createdAt:0, updatedAt:0}
+    )
 
     res.json({list, category})
   } catch (err) {
@@ -34,7 +37,7 @@ router.get('/:collection', async (req, res) => {
 
 
 // Add nouns collection
-router.post('/create', async (req, res) => {
+router.post('/create', (req, res) => {
   // Return an errors array if received data is incorrect
   const {collectionName, inputList} = req.body
 
@@ -71,12 +74,40 @@ router.post('/create', async (req, res) => {
 
     try {
       await word.save()
-      return res.json('Nouns successfully added!')
     } catch (err) {
       return res.status(400).json({ errors: [{ msg: 'Server Error'}]})
     }
   })
+  res.json('Nouns successfully added!')
+})
 
+
+// Edit noun route
+router.put('/', (req, res) => {
+  const { noun } = req.body
+  const update = {
+    english: noun.english,
+    singular: noun.singular,
+    plural: noun.plural
+  }
+
+  Noun.findOneAndUpdate({ _id: noun._id }, update, (err, data) => {
+    if (err) {
+      res.status(400).json(`${update.english} edit failed`)
+    } else {
+      res.json(`${update.english} edit successful`)
+    }
+  })
+  
+})
+
+// Delete 
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+
+  Noun.findByIdAndDelete(id)
+    .then(result => res.json('Success'))
+    .catch(err => res.status(400).json('delete failed'))
 })
 
 module.exports = router 

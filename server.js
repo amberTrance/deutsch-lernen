@@ -9,13 +9,18 @@ const uri = "mongodb+srv://test:abcd1234@node.ul9of.mongodb.net/deutsch-lernen?r
 // Body parser
 app.use(express.json({ extended: false }))
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(uri, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useCreateIndex: true,
+  useFindAndModify: false
+})
   .then(result => {
     console.log('DB connection established')
 
     app.listen(PORT)
   })
   .catch (err => console.log(err))
-
+// mongoose.set('debug', true);
 
 app.use('/nouns', require('./routes/nouns'))
