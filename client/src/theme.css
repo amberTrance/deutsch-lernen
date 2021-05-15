@@ -1,0 +1,115 @@
+:root {
+  --back: rgb(17, 17, 17);
+  --font: rgb(25, 228, 126);
+  --font-2: #037ec5;
+  --deco: rgb(55, 55, 172);
+  --violet: rgb(139, 12, 122);
+  --imp: rgb(206, 0, 86);
+}
+
+body {
+  background-color: var(--back);
+  color: var(--font);
+}
+
+h1, footer, #email {
+  color: var(--imp);
+}
+
+#email:hover {
+  color: violet;
+}
+
+input {
+  background-color: var(--back);
+  color: var(--font);
+}
+
+a {
+  color: var(--font)
+}
+
+a:hover, 
+.btn:hover, 
+button:hover, 
+.submit:hover {
+  color: white;
+}
+
+button {
+  background-color: var(--back);
+  color: var(--font);
+  border: 1px solid var(--font)
+}
+
+.btn:hover {
+  background-color: var(--font-2);
+}
+
+th p, .title, h2 {
+  color: var(--font-2);
+  border-bottom: 2px solid var(--deco);
+  padding: 10px 5px;
+}
+
+.btn, .submit {
+  color: var(--font-2);
+  border: 2px var(--font-2) solid;
+}
+
+.create-btn {
+  border: 2px solid var(--font-2);
+  margin: 15px 0px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-link {
+  color: var(--font-2);
+}
+
+.create-link:hover, .submit:hover {
+  color:violet;
+}
+.create-btn:hover, .submit:hover {
+  border-color: violet;
+}
+
+/* Input test verification */
+.correct {
+  color: rgb(18, 201, 247);
+}
+
+.false {
+  color: rgb(255, 62, 62);
+}
+
+/* Nav and footer border */
+.navbar {
+  border-bottom: 2px solid var(--deco);
+}
+footer {
+  border-top: 2px solid var(--deco);
+}
+
+.nav-link:hover {
+  background-color: var(--violet);
+}
+.mark:hover {
+  border: 2px solid var(--violet);
+  padding: 8px 13px;
+}
+
+/* bullets collection list */
+ul {
+  list-style-type: square;
+  color: var(--deco);
+}
+
+/* Error message style */
+.error {
+  background-color: var(--violet);
+  color: white;
+}

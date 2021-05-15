@@ -1,0 +1,56 @@
+/* Table */
+table {
+  margin-top: 30px;
+}
+
+td p {
+  padding: 6px;
+}
+
+th {
+  font-size: 18px;
+}
+
+th, td {
+  padding: 5px 12px;
+}
+
+input, .btn {
+  margin-top: 0px;
+}
+
+.btn, button, .submit{
+  cursor: pointer;
+}
+
+.leftContent form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  font-size: 17px;
+  border-bottom: 1px grey solid;
+}
+
+.btn-box {
+  display: flex;
+}
+
+.btn {
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: 17px;
+  margin: -1px;
+}
+
+.submit {
+  margin: 15px 0px;
+  padding: 5px 10px;
+  border-radius: 3px;
+}

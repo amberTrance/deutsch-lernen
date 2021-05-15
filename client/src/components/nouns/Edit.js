@@ -74,7 +74,7 @@ const Edit = () => {
     <div className="container">
       <div className="leftContent">
         <Buttons collection={ collection }/>
-        <h2 className="title">Translate into german</h2>
+        <h2 className="title">Edit or Delete</h2>
         <form autoComplete="off">
           <h2 
             type="text" 
@@ -87,9 +87,9 @@ const Edit = () => {
           <table>
             <thead>
               <tr>
-                <th>English</th>
-                <th>Singular</th>
-                <th>Plural</th>
+                <th><p>English</p></th>
+                <th><p>Singular</p></th>
+                <th><p>Plural</p></th>
                 <th></th>
               </tr>
             </thead>

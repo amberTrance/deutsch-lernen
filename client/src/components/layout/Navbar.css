@@ -1,23 +1,29 @@
 .navbar {
-  padding: 20px;
+  padding: 10px 0px;
   display: flex;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  border-bottom: 4px solid aliceblue;
 }
 
-h1 {
-  color: grey;
+a {
+  text-decoration: none;
 }
 
 .links {
   margin-left: auto;
 }
 
-a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link {
   font-size: 18px;
+}
+
+.nav-link, h1 {
+  padding: 10px 15px;
+  margin: 1px;
 }

@@ -69,7 +69,7 @@ const DeEn = () => {
     <div className="container">
       <div className="leftContent">
         <Buttons collection={ collection }/>
-        <h2 className="title">Translate into english</h2>
+        <h2 className="title">Translate to English</h2>
         <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
@@ -82,9 +82,9 @@ const DeEn = () => {
           <table>
             <thead>
               <tr>
-                <th>English</th>
-                <th>Singular</th>
-                <th>Plural</th>
+                <th><p>English</p></th>
+                <th><p>Singular</p></th>
+                <th><p>Plural</p></th>
               </tr>
             </thead>
             <tbody>

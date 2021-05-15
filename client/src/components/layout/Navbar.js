@@ -4,10 +4,12 @@ import './Navbar.css'
 const Navbar = () => {
   return ( 
     <nav className="navbar">
-      <h1>Deutsch Lernen</h1>
+      <Link to="/">
+        <h1 className="mark">Deutsch Lernen</h1>
+      </Link>
       <div className="links">
-        <a href="/">Home</a>
-        <Link to='/nouns'>Nouns</Link>
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to='/nouns' className="nav-link">Nouns</Link>
       </div>
     </nav>
   )

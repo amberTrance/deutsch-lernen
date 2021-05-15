@@ -22,81 +22,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* Table CSS */
-table {
-  margin-top: 30px;
-}
-
-td {
-  padding: 6px;
-}
-
-th {
-  font-size: 18px;
-  padding: 25px;
-}
-
-input, .btn {
-  margin-right: 15px;
-  margin-top: 0px;
-}
-
-input {
-  outline: none;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  font-size: 17px;
-}
-
-.btn-box {
-  display: flex;
-}
-
-.btn {
-  border: 2px grey solid;
-  padding: 3px 10px;
-}
-
-.title {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.submit-box {
-  text-align: center;
-}
-
-.submit {
-  border: 2px black solid;
-  margin:20px 0px;
-  padding: 10px;
-}
-
-.collectionInput {
-  text-align: center
-}
-
-/* Input Test verification */
-.correct {
-  background-color: rgb(167, 231, 167);
-}
-
-.false {
-  background-color: rgb(255, 207, 74);
+  flex-grow: 2;
 }
 
 /* Collection list */
 .aside-nav {
-  margin-left: auto;
-  padding: 15px;
-}
-
-ul {
-  list-style-type: square;
-  color: grey;
+  padding: 15px; 
 }
 
 .aside-nav a {
@@ -108,9 +39,10 @@ li {
 }
 
 /* Create button */
-.create {
+.create-btn {
   font-size: 20px;
-  padding: 10px 15px;
+  padding: 2px 0px;
+  text-align: center;
 }
 
 /* Collection buttons */
@@ -129,6 +61,15 @@ li {
   padding: 0px;
 }
 
+#see-btn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#edit-btn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 /* Messages */
 .msg {
   padding: 15px;
@@ -136,6 +77,8 @@ li {
   display: inline-block;
 }
 
-.error {
-  background-color: orange;
+/* Titles */
+.title {
+  margin-bottom: 30px;
+  display: inline-block;
 }

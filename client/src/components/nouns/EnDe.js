@@ -78,7 +78,7 @@ const EnDe = () => {
     <div className="container">
       <div className="leftContent">
         <Buttons collection={ collection }/>
-        <h2 className="title">Translate into german</h2>
+        <h2 className="title">Translate to German</h2>
         <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
@@ -91,9 +91,9 @@ const EnDe = () => {
           <table>
             <thead>
               <tr>
-                <th>English</th>
-                <th>Singular</th>
-                <th>Plural</th>
+                <th><p>English</p></th>
+                <th><p>Singular</p></th>
+                <th><p>Plural</p></th>
               </tr>
             </thead>
             <tbody>
@@ -133,7 +133,7 @@ const EnDe = () => {
             </tbody>
           </table>
 
-          <div className="submit-box">
+          <div>
             <input 
               type="submit" 
               value="Submit" 

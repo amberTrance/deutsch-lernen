@@ -16,9 +16,9 @@ const Collection = () => {
         <table>
             <thead>
               <tr>
-                <th>English</th>
-                <th>Singular</th>
-                <th>Plural</th>
+                <th><p>English</p></th>
+                <th><p>Singular</p></th>
+                <th><p>Plural</p></th>
               </tr>
             </thead>
             <tbody>

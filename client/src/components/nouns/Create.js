@@ -75,7 +75,7 @@ const Create = () => {
           </div>
         ) }
         <h2 className="title">Create New Collection</h2>
-        <form onSubmit={e => onSubmit(e)} autoComplete="off">
+        <form onSubmit={e => onSubmit(e)} autoComplete="off" className="create">
           <h3 className="title">Collection Name: </h3>
           <div className="collectionInput">
           <input
@@ -90,9 +90,9 @@ const Create = () => {
           <table>
             <thead>
               <tr>
-                <th>English</th>
-                <th>Singular</th>
-                <th>Plural</th>
+                <th><p>English</p></th>
+                <th><p>Singular</p></th>
+                <th><p>Plural</p></th>
                 <th></th>
               </tr>
             </thead>

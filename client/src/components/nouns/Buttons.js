@@ -4,16 +4,16 @@ const Buttons = ({collection}) => {
   return ( 
     <div className="btn-container">
       <Link to={`/nouns/${collection}`}>
-        <button>See</button>
+        <button id="see-btn">SEE</button>
       </Link>
       <Link to={`/nouns/${collection}/en-de`}>
-        <button>en-de</button>
+        <button>EN-DE</button>
       </Link>
       <Link to={`/nouns/${collection}/de-en`}>
-        <button>de-en</button>
+        <button>DE-EN</button>
       </Link>
       <Link to={`/nouns/${collection}/edit`}>
-        <button>Edit</button>
+        <button id="edit-btn">EDIT</button>
       </Link>
     </div> 
   );
