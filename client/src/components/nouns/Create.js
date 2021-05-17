@@ -6,7 +6,7 @@ import CollectionNav from './CollectionNav'
 const Create = () => {
 
   // Fetch collection list
-  const { data: list } = useFetch('/nouns')
+  const { data: list } = useFetch('/api/nouns')
 
   const [errors, setErrors] = useState([])
   const [collectionName, setCollectionName] = useState('')
@@ -58,7 +58,7 @@ const Create = () => {
 
     const body = JSON.stringify({collectionName, inputList})
     
-    axios.post('/nouns/create', body, config)
+    axios.post('/api/nouns/create', body, config)
       .then(res => {
         window.location = `/nouns/${collectionName}`
       })
@@ -75,16 +75,21 @@ const Create = () => {
           </div>
         ) }
         <h2 className="title">Create New Collection</h2>
-        <form onSubmit={e => onSubmit(e)} autoComplete="off" className="create">
+        <form 
+          onSubmit={e => onSubmit(e)} 
+          autoComplete="off" 
+          className="create">
+          
           <h3 className="title">Collection Name: </h3>
           <div className="collectionInput">
           <input
-              type="text" 
-              name="collectionName"
-              value={collectionName}
-              onChange={handleCollectionName}
-              required
-            />
+            className="input"
+            type="text" 
+            name="collectionName"
+            value={collectionName}
+            onChange={handleCollectionName}
+            required
+          />
           </div>
           
           <table>

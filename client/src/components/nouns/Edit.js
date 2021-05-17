@@ -12,7 +12,7 @@ const Edit = () => {
 
   // Fetch from the database all the nouns in the coresponding category
   // and the side navbar 
-  const {category, list} = useFetch(`/nouns/${collection}`)
+  const {category, list} = useFetch(`/api/nouns/${collection}`)
 
     
   // Create a state for Table display
@@ -53,7 +53,7 @@ const Edit = () => {
 
     const body = JSON.stringify({noun})
 
-    axios.put('/nouns', body, config)
+    axios.put('/api/nouns', body, config)
       .then(result => console.log(result))
       .catch(err => console.log(err))
 
@@ -65,7 +65,7 @@ const Edit = () => {
 
     const id = noun._id
 
-    axios.delete(`/nouns/${id}`)
+    axios.delete(`/api/nouns/${id}`)
       .then(res => window.location = `/nouns/${collection}/edit`)
       .catch(err => console.log(err))
   }
@@ -75,7 +75,7 @@ const Edit = () => {
       <div className="leftContent">
         <Buttons collection={ collection }/>
         <h2 className="title">Edit or Delete</h2>
-        <form autoComplete="off">
+        {inputList.length !== 0 && <form autoComplete="off">
           <h2 
             type="text" 
             name="collectionName"
@@ -96,10 +96,10 @@ const Edit = () => {
             <tbody>
             {inputList.map((noun, i) => {
               return (
-                <tr key={noun.id}>
+                <tr key={noun._id}>
                   <td>
                     <input
-                      className={noun.responseSing}
+                      className="input"
                       type="text" 
                       name="english"
                       value={noun.english}
@@ -108,7 +108,7 @@ const Edit = () => {
                   </td>
                   <td>
                     <input
-                      className={noun.responseSing}
+                      className="input"
                       type="text" 
                       name="singular"
                       value={noun.singular}
@@ -117,7 +117,7 @@ const Edit = () => {
                   </td>
                   <td>
                     <input
-                      className={noun.responsePl}
+                      className="input"
                       type="text" 
                       name="plural"
                       value={noun.plural}
@@ -126,14 +126,14 @@ const Edit = () => {
                   </td>
                   <td className="btn-box">
                     <div 
-                      className="btn" 
+                      className="btn btn-edit" 
                       onClick={() => handleEditClick(i)}
                       key={`edit-${noun.english}`}
                     >
                       Edit
                     </div>
                     <div 
-                      className="btn" 
+                      className="btn btn-delete" 
                       onClick={() => handleDeleteClick(i)}
                       key={`delete-${noun.english}`}
                     >
@@ -145,7 +145,7 @@ const Edit = () => {
             })}
             </tbody>
           </table>
-        </form>
+        </form> }
       </div>
       <CollectionNav list={list}/>
     </div>

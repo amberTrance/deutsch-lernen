@@ -15,7 +15,7 @@ th, td {
   padding: 5px 12px;
 }
 
-input, .btn {
+.leftContent input, .btn {
   margin-top: 0px;
 }
 
@@ -29,7 +29,7 @@ input, .btn {
   align-items: center;
 }
 
-input {
+.leftContent .input {
   outline: none;
   border-top-style: hidden;
   border-right-style: hidden;
@@ -43,14 +43,25 @@ input {
 }
 
 .btn {
-  border-radius: 3px;
   padding: 3px 10px;
   font-size: 17px;
   margin: -1px;
 }
 
+.btn-edit {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.btn-delete {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 .submit {
-  margin: 15px 0px;
   padding: 5px 10px;
   border-radius: 3px;
+  font-size: 17px;
+}
+.submit-box {
+  margin: 20px 0px;
 }

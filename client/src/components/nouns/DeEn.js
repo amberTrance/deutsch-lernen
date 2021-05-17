@@ -11,7 +11,7 @@ const DeEn = () => {
 
   // Fetch from the database all the nouns in the coresponding category
   // and the side navbar 
-  const {category, list} = useFetch(`/nouns/${collection}`)
+  const {category, list} = useFetch(`/api/nouns/${collection}`)
 
     
   // Create a state for Table display
@@ -70,7 +70,7 @@ const DeEn = () => {
       <div className="leftContent">
         <Buttons collection={ collection }/>
         <h2 className="title">Translate to English</h2>
-        <form onSubmit={e => onSubmit(e)} autoComplete="off">
+        {inputList.length !== 0 && <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
             name="collectionName"
@@ -129,8 +129,8 @@ const DeEn = () => {
               type="submit" 
               value="Submit" 
               className="submit"/>
-            </div>
-        </form>
+          </div>
+        </form> }
       </div>
       <CollectionNav list={list}/>
     </div>

@@ -23,4 +23,5 @@ mongoose.connect(uri, {
   .catch (err => console.log(err))
 // mongoose.set('debug', true);
 
-app.use('/nouns', require('./routes/nouns'))
+app.use('/api/nouns', require('./routes/api/nouns'))
+app.use('/api/auth', require('./routes/api/auth'))

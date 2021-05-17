@@ -10,6 +10,9 @@ import Collection from './components/nouns/Collection'
 import EnDe from './components/nouns/EnDe'
 import DeEn from './components/nouns/DeEn'
 import Edit from './components/nouns/Edit'
+// auth
+import Login from './components/auth/Login'
+import Signup from './components/auth/Signup'
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route exact path='/nouns/:collection/en-de' component={EnDe} />
             <Route exact path='/nouns/:collection/de-en' component={DeEn} />
             <Route exact path='/nouns/:collection/edit' component={Edit} />
+  
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
           </Switch>
         </div>
         <Footer />

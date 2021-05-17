@@ -1,9 +1,9 @@
 :root {
-  --back: rgb(17, 17, 17);
-  --font: rgb(25, 228, 126);
-  --font-2: #037ec5;
+  --back: rgb(18, 18, 20);
+  --font: rgb(55, 212, 134);
+  --font-2: #31b3ff;
   --deco: rgb(55, 55, 172);
-  --violet: rgb(139, 12, 122);
+  --violet: rgb(129, 15, 114);
   --imp: rgb(206, 0, 86);
 }
 
@@ -12,7 +12,7 @@ body {
   color: var(--font);
 }
 
-h1, footer, #email {
+.mark, footer, #email {
   color: var(--imp);
 }
 
@@ -32,7 +32,8 @@ a {
 a:hover, 
 .btn:hover, 
 button:hover, 
-.submit:hover {
+.submit:hover,
+.auth-btn:hover {
   color: white;
 }
 
@@ -42,17 +43,20 @@ button {
   border: 1px solid var(--font)
 }
 
-.btn:hover {
+.btn:hover, .auth-btn:hover {
   background-color: var(--font-2);
 }
 
-th p, .title, h2 {
+th p, 
+.title, 
+.leftContent h2,
+.aside-nav h2 {
   color: var(--font-2);
   border-bottom: 2px solid var(--deco);
   padding: 10px 5px;
 }
 
-.btn, .submit {
+.btn, .submit, .auth-btn {
   color: var(--font-2);
   border: 2px var(--font-2) solid;
 }
@@ -61,20 +65,19 @@ th p, .title, h2 {
   border: 2px solid var(--font-2);
   margin: 15px 0px;
   border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 5px 15px;
 }
 
-.create-link {
+.auth h2, .create-btn {
   color: var(--font-2);
 }
 
-.create-link:hover, .submit:hover {
+.submit:hover {
   color:violet;
 }
 .create-btn:hover, .submit:hover {
   border-color: violet;
+  color: violet;
 }
 
 /* Input test verification */
@@ -94,12 +97,10 @@ footer {
   border-top: 2px solid var(--deco);
 }
 
-.nav-link:hover {
-  background-color: var(--violet);
-}
 .mark:hover {
   border: 2px solid var(--violet);
   padding: 8px 13px;
+  border-radius: 3px;
 }
 
 /* bullets collection list */
@@ -112,4 +113,47 @@ ul {
 .error {
   background-color: var(--violet);
   color: white;
+}
+
+/* Authentication styling */
+.auth-input {
+  border-bottom: 2px solid grey;
+  color: var(--font-2);
+}
+
+.auth-input::placeholder {
+  color: grey;
+}
+
+.auth p, .auth-btn, .auth a {
+  color: var(--font-2);
+}
+
+.auth a:hover {
+  color: white;
+}
+
+/* login button */
+#login {
+  background-color: var(--violet);
+  border-radius: 3px;
+  border-style: none;
+  color: white;
+}
+#login:hover {
+  background-color: var(--imp);
+}
+
+/* Autofill of form input fields */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px var(--back) inset !important;
+}
+
+input:-webkit-autofill
+{
+ -webkit-text-fill-color: var(--font) !important;
 }

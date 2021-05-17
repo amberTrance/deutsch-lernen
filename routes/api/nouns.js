@@ -1,8 +1,7 @@
-const e = require('express')
 const express = require('express')
 const router = express.Router()
 
-const Noun = require('../models/Noun')
+const Noun = require('../../models/Noun')
 
 
 // Returns a list with all the noun categories

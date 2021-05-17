@@ -6,14 +6,14 @@ import Buttons from './Buttons'
 const Collection = () => {
   const { collection } = useParams()
 
-  const { category, list } = useFetch(`/nouns/${collection}`)
+  const { category, list } = useFetch(`/api/nouns/${collection}`)
 
   return (
     <div className="container">
       <div className="leftContent">
       <Buttons collection={collection}/>
       <h2 className="title">{collection}</h2>
-        <table>
+        { category.length !== 0 && <table>
             <thead>
               <tr>
                 <th><p>English</p></th>
@@ -56,7 +56,7 @@ const Collection = () => {
               )
             })}
             </tbody>
-          </table>
+          </table> }
         </div>
         <CollectionNav list={list}/>
     </div>

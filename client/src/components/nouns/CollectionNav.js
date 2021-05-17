@@ -5,9 +5,9 @@ const CollectionNav = ({ list }) => {
   return ( 
     <nav className="aside-nav">
       <h2>Collections</h2>
-      <div className="create-btn">
-        <Link to="/nouns/create" className="create-link">create new</Link>
-      </div>
+        <Link to="/nouns/create" className="create-link">
+          <button className="create-btn">create new</button>
+        </Link>
       <ul>
       {list.map((item) => {
         return (
