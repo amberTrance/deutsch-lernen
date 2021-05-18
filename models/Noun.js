@@ -9,7 +9,6 @@ const NounSchema = mongoose.Schema({
 	english: {
 		type: String,
 		required: true,
-		unique: true,
 		trim: true
 	},
 	singular: {
@@ -21,8 +20,15 @@ const NounSchema = mongoose.Schema({
 		type: String,
 		required: true,
 		trim: true
+	},
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: 'user'
 	}
 }, { timestamps: true })
+
+NounSchema.index({ user: 1, english: 1 }, { unique: true })
 
 const Noun = mongoose.model('Noun', NounSchema)
 

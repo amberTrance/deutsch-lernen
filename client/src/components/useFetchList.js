@@ -7,6 +7,14 @@ const useFetchList = (url) => {
     const [error, setError] = useState([])
   
     useEffect(() => {
+      const token =  localStorage.getItem('token')
+      // Set headers
+      if (token) {
+        axios.defaults.headers.common['x-access-token'] = token
+      } else {
+        delete axios.defaults.headers.common['x-access-token']
+      }
+
       axios.get(url)
       .then(response => {
         setData(response.data)

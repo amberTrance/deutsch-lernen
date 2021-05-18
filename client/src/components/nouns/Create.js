@@ -50,6 +50,14 @@ const Create = () => {
   const onSubmit = e => {
     e.preventDefault()
 
+    const token =  localStorage.getItem('token')
+    // Set headers
+    if (token) {
+      axios.defaults.headers.common['x-access-token'] = token
+    } else {
+      delete axios.defaults.headers.common['x-access-token']
+    }
+
     const config = {
       headers: {
         'Content-Type': 'application/json'

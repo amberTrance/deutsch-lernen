@@ -13,6 +13,8 @@ import Edit from './components/nouns/Edit'
 // auth
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
+// protected route
+import PrivateRoute from './components/routing/PrivateRoute'
 
 function App() {
   return (
@@ -22,12 +24,12 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/nouns' component={Nouns}/>
-            <Route exact path='/nouns/create' component={Create} />
-            <Route exact path='/nouns/:collection' component={Collection} />
-            <Route exact path='/nouns/:collection/en-de' component={EnDe} />
-            <Route exact path='/nouns/:collection/de-en' component={DeEn} />
-            <Route exact path='/nouns/:collection/edit' component={Edit} />
+            <PrivateRoute exact path='/nouns' component={Nouns}/>
+            <PrivateRoute exact path='/nouns/create' component={Create} />
+            <PrivateRoute exact path='/nouns/:collection' component={Collection} />
+            <PrivateRoute exact path='/nouns/:collection/en-de' component={EnDe} />
+            <PrivateRoute exact path='/nouns/:collection/de-en' component={DeEn} />
+            <PrivateRoute exact path='/nouns/:collection/edit' component={Edit} />
   
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
