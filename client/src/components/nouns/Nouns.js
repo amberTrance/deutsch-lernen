@@ -1,17 +1,26 @@
+import { Link } from 'react-router-dom'
 import CollectionNav from './CollectionNav'
 import useFetchList from '../useFetchList'
 
 const Nouns = () => {
-  const { data: list } = useFetchList('/api/nouns')
+  const { data: list, loading } = useFetchList('/api/nouns')
 
   return (
       <div className="container">
         <div className="leftContent">
           <section>
-            <h1>If you have no collections, create one </h1>
+            { loading && list.length > 0 ? (<h1>Select a collection from the right: </h1>) :
+            (
+              <div style={{textAlign: "center"}}>
+                <h1>Create a new collection</h1>
+                <Link to="/nouns/create" className="create-link">
+                  <button className="create-btn">create new</button>
+                </Link>
+              </div>
+            )}
           </section>
         </div>
-        <CollectionNav list={list}/>
+        { loading && list.length > 0 (<CollectionNav list={list}/>) }
       </div>
    )
 }

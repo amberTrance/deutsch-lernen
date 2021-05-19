@@ -66,7 +66,13 @@ const Edit = () => {
     const id = noun._id
 
     axios.delete(`/api/nouns/${id}`)
-      .then(res => window.location = `/nouns/${collection}/edit`)
+      .then(res => {
+        if (inputList.length === 1) {
+          window.location = '/nouns'
+        } else {         
+          window.location = `/nouns/${collection}/edit`
+        }
+      })
       .catch(err => console.log(err))
   }
 

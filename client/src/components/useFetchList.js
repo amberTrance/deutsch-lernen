@@ -5,6 +5,7 @@ const useFetchList = (url) => {
     const [data, setData] = useState([])
     // Error
     const [error, setError] = useState([])
+    const [loading, setLoading] = useState(true)
   
     useEffect(() => {
       const token =  localStorage.getItem('token')
@@ -18,12 +19,16 @@ const useFetchList = (url) => {
       axios.get(url)
       .then(response => {
         setData(response.data)
+        setLoading(false)
       })
-      .catch(error => setError(error))
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+      })
 
     }, [url])
   
-    return {data, error}
+    return {data, error, loading}
 }
 
 export default useFetchList

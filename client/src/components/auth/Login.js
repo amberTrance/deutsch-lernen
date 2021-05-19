@@ -12,7 +12,7 @@ const Login = () => {
   const { email, password } = inputData
 
   const onChange = (e) => {
-    let input = setInputData({...inputData, [e.target.name] : e.target.value})
+    setInputData({...inputData, [e.target.name] : e.target.value})
   }
   
   const onSubmit = (e) => {

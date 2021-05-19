@@ -50,27 +50,37 @@ const Create = () => {
   const onSubmit = e => {
     e.preventDefault()
 
-    const token =  localStorage.getItem('token')
-    // Set headers
-    if (token) {
-      axios.defaults.headers.common['x-access-token'] = token
-    } else {
-      delete axios.defaults.headers.common['x-access-token']
-    }
+    // Check if user wrote the same value in two different inputs for English
+    // send warning if so
+    let duplicatesList = inputList.map(item => item.english)
+    let set = new Set(duplicatesList)
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
+    if (duplicatesList.length !== set.size) {
+      setErrors([{msg: 'There can be no duplicates in the English field, or empty fields!'}])
+    } else { 
+
+      const token =  localStorage.getItem('token')
+      // Set headers
+      if (token) {
+        axios.defaults.headers.common['x-access-token'] = token
+      } else {
+        delete axios.defaults.headers.common['x-access-token']
       }
-    }
 
-    const body = JSON.stringify({collectionName, inputList})
-    
-    axios.post('/api/nouns/create', body, config)
-      .then(res => {
-        window.location = `/nouns/${collectionName}`
-      })
-      .catch(err => setErrors(err.response.data.errors))
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      const body = JSON.stringify({collectionName, inputList})
+      
+      axios.post('/api/nouns/create', body, config)
+        .then(res => {
+          window.location = `/nouns/${collectionName}`
+        })
+        .catch(err => setErrors(err.response.data.errors))
+    }
   }
 
   return (

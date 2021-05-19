@@ -49,45 +49,22 @@ router.get('/:collection', verifyJWT, async (req, res) => {
 router.post('/create', verifyJWT, (req, res) => {
   // Return an errors array if received data is incorrect
   const {collectionName, inputList} = req.body
+  
+  // Add user property to each item in the array
+  let userItemList = inputList.map(item => ({ ...item,'category': collectionName, 'user': req.user.id }))
 
-  inputList.forEach(async item => {
-
-    let english = item.english
-    let singular = item.singular
-    let plural = item.plural
-
-    // Verifies if after triming, an input field is empty
-    if (
-      collectionName.trim() === '' ||
-      english.trim() === '' ||
-      singular.trim() === '' ||
-      plural.trim() === ''
-    ) {
-      return res.status(400).json({errors: [{ msg: 'Fields cannot be empty!'}]})
-    }
-
-    let word = await Noun.findOne({ english: english })
-
-    if (word) {
-      return res.status(400).json(
-        { errors: [{ msg: `The noun '${item.english}' already exists in the '${word.category}' collection!`}] }
-      )
-    }
-
-    word = new Noun ({
-      category: collectionName,
-      english: english,
-      singular: singular,
-      plural: plural,
-      user: req.user.id
+  Noun.insertMany(userItemList)
+    .then(result => {
+      console.log('success')
+      res.json('Success')
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(400).json({errors: [{msg: `Your collection could not be saved. 
+      Make sure all your fields are completed and that 
+      none of the words you wrote already exists in another collection.`}]})
     })
 
-    try {
-      await word.save()
-    } catch (err) {
-      return res.status(400).json({ errors: [{ msg: 'Server Error'}]})
-    }
-  })
 })
 
 

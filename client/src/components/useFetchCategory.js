@@ -6,6 +6,7 @@ const useFetchList = (url) => {
     const [list, setList] = useState([])
     // Error
     const [error, setError] = useState([])
+    const [loading, setLoading] = useState(true)
   
     useEffect(() => {
       const token =  localStorage.getItem('token')
@@ -20,12 +21,16 @@ const useFetchList = (url) => {
       .then(response => {
         setCategory(response.data.category)
         setList(response.data.list)
+        setLoading(false)
       })
-      .catch(error => setError(error))
+      .catch(error => {
+        setError(error)
+        setLoading(false)
+       })
 
     }, [url])
   
-    return {category, list, error}
+    return { category, list, error, loading }
 }
 
 export default useFetchList

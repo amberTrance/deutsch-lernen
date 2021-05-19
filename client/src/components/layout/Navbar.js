@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const user = (
     <div className="links">
-      {/* <div className="nav-link">{username}</div> */}
+      <div className="nav-link">{username}</div>
       <Link to='/nouns' className="nav-link">Nouns</Link>
       <button onClick={handleLogOut} className="nav-link" id="login">Log out</button>
     </div>
