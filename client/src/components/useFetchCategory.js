@@ -19,9 +19,13 @@ const useFetchList = (url) => {
       
       axios.get(url)
       .then(response => {
-        setCategory(response.data.category)
-        setList(response.data.list)
-        setLoading(false)
+        if((response.data.category).length === 0) {
+          window.location = '/NotFound'
+        } else {
+          setCategory(response.data.category)
+          setList(response.data.list)
+          setLoading(false)
+        }
       })
       .catch(error => {
         setError(error)

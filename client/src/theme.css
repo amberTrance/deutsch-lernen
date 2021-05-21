@@ -134,7 +134,7 @@ ul {
 }
 
 /* login button */
-#login {
+#login, #logout {
   background-color: var(--violet);
   border-radius: 3px;
   border-style: none;
@@ -142,6 +142,25 @@ ul {
 }
 #login:hover {
   background-color: var(--imp);
+}
+
+#logout:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 90%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: var(--violet);
+	border-top: 0;
+	border-right: 0;
+	margin-left: -20.5px;
+	margin-top: -10px;
+}
+
+.stats {
+  color: var(--font-2);
 }
 
 /* Autofill of form input fields */

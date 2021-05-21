@@ -114,8 +114,8 @@ const Create = () => {
             <thead>
               <tr>
                 <th><p>English</p></th>
-                <th><p>Singular</p></th>
-                <th><p>Plural</p></th>
+                <th><p>German Singular</p></th>
+                <th><p>German Plural</p></th>
                 <th></th>
               </tr>
             </thead>

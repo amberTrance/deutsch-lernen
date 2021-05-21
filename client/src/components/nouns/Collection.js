@@ -6,19 +6,19 @@ import Buttons from './Buttons'
 const Collection = () => {
   const { collection } = useParams()
 
-  const { category, list } = useFetch(`/api/nouns/${collection}`)
+  const { category, list, loading } = useFetch(`/api/nouns/${collection}`)
 
   return (
     <div className="container">
       <div className="leftContent">
       <Buttons collection={collection}/>
-      <h2 className="title">{collection}</h2>
-        { category.length !== 0 && <table>
+      {!loading && <h2 className="title">{collection}</h2>}
+        {!loading && <table>
             <thead>
               <tr>
                 <th><p>English</p></th>
-                <th><p>Singular</p></th>
-                <th><p>Plural</p></th>
+                <th><p>German Singular</p></th>
+                <th><p>German Plural</p></th>
               </tr>
             </thead>
             <tbody>

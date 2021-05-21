@@ -4,6 +4,7 @@
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
 }
 
 a {
@@ -26,4 +27,14 @@ a {
 .nav-link, h1 {
   padding: 10px 15px;
   margin: 1px;
+}
+
+#logout {
+  position: absolute;
+  top: 67px;
+  right: 10px;
+}
+
+#user:hover {
+  cursor: pointer;
 }

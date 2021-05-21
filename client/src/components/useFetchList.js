@@ -6,6 +6,7 @@ const useFetchList = (url) => {
     // Error
     const [error, setError] = useState([])
     const [loading, setLoading] = useState(true)
+    const [count, setCount] = useState()
   
     useEffect(() => {
       const token =  localStorage.getItem('token')
@@ -18,8 +19,9 @@ const useFetchList = (url) => {
 
       axios.get(url)
       .then(response => {
-        setData(response.data)
+        setData(response.data.list)
         setLoading(false)
+        setCount(response.data.count)
       })
       .catch(error => {
         setError(error)
@@ -28,7 +30,7 @@ const useFetchList = (url) => {
 
     }, [url])
   
-    return {data, error, loading}
+    return {data, error, loading, count}
 }
 
 export default useFetchList

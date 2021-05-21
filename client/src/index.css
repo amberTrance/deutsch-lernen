@@ -119,6 +119,14 @@ li {
   margin: 10px 0px;
 }
 
+.tips {
+  max-width: 600px;
+}
+
+.stats {
+  padding: 10px 15px;
+}
+
 .auth-btn:active, 
 .btn:active,
 .submit:active,

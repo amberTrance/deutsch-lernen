@@ -11,10 +11,13 @@ router.get('/', verifyJWT, async (req, res) => {
   try {
     
     const data = await Noun.find({user: id},{createdAt:0, updatedAt:0})
+
     const filtered = data.map(item => item.category)
     const list = [...new Set(filtered)]
 
-    res.json(list)
+    const count = data.length
+
+    res.json({list, count})
   } catch (err) {
     res.status(400).json('Server Error')
   }
@@ -96,4 +99,4 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(400).json('delete failed'))
 })
 
-module.exports = router 
+module.exports = router

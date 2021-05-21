@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './tables.css'
 import './theme.css'
+// Layout
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Home from './components/layout/Home'
+import NotFound from './components/layout/NotFound'
+// Nouns
 import Nouns from './components/nouns/Nouns'
 import Create from './components/nouns/Create'
 import Collection from './components/nouns/Collection'
@@ -33,6 +36,8 @@ function App() {
   
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
+
+            <Route component={NotFound} />
           </Switch>
         </div>
         <Footer />

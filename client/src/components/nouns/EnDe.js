@@ -11,7 +11,7 @@ const EnDe = () => {
 
   // Fetch from the database all the nouns in the coresponding category
   // and the side navbar 
-  const {category, list} = useFetch(`/api/nouns/${collection}`)
+  const {category, list, loading} = useFetch(`/api/nouns/${collection}`)
 
     
   // Create a state for Table display
@@ -79,7 +79,7 @@ const EnDe = () => {
       <div className="leftContent">
         <Buttons collection={ collection }/>
         <h2 className="title">Translate to German</h2>
-        {inputList.length !== 0 && <form onSubmit={e => onSubmit(e)} autoComplete="off">
+        {!loading && <form onSubmit={e => onSubmit(e)} autoComplete="off">
           <h2 
             type="text" 
             name="collectionName"
@@ -92,8 +92,8 @@ const EnDe = () => {
             <thead>
               <tr>
                 <th><p>English</p></th>
-                <th><p>Singular</p></th>
-                <th><p>Plural</p></th>
+                <th><p>German Singular</p></th>
+                <th><p>German Plural</p></th>
               </tr>
             </thead>
             <tbody>

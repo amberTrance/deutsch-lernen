@@ -1,20 +1,41 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import useFetchUser from '../useFetchUser'
 
 const Navbar = () => {
   const { isAuth, username } = useFetchUser()
+  const [click, setClick] = useState(false)
+
 
   const handleLogOut = () => {
     localStorage.removeItem('token')
     window.location = '/';
   }
 
+  const clickListener = () => {
+    setClick(false)
+  }
+  
+  const handleUserClick = () => {
+    
+    if (click) {
+      setClick(false)
+    } else {
+      setClick(true)
+    }
+  }
+
   const user = (
     <div className="links">
-      <div className="nav-link">{username}</div>
       <Link to='/nouns' className="nav-link">Nouns</Link>
-      <button onClick={handleLogOut} className="nav-link" id="login">Log out</button>
+      <span 
+        className="nav-link"
+        id="user"
+        onClick={handleUserClick}>
+        {username}
+      </span>
+      { click && <button onClick={handleLogOut} className="nav-link" id="logout">Log out</button> }
     </div>
   )
 
