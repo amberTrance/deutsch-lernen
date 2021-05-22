@@ -15,7 +15,7 @@ const Nouns = () => {
   const noCollection = (
     <div style={{textAlign: "center"}}>
       <h1>Create a new nouns collection</h1>
-      <p className="tips">
+      <p className="para">
         Tips: create collections with related words, such as 'kitchen',
         with nouns representing kitchen items. Always write the singular
         version of the german noun with its corresponding article. This way

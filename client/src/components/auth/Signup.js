@@ -35,7 +35,7 @@ const Signup = () => {
 			axios.post('/api/auth/signup', body, config)
 				.then(res => {
 					localStorage.setItem('token', res.data.token)
-					window.location = '/'
+					window.location = '/nouns'
 				})
 				.catch(err => {
 					if (err.response.data.errors) setErrors([...err.response.data.errors])

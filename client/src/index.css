@@ -40,8 +40,8 @@ li {
 /* Create button */
 .create-btn {
   font-size: 20px;
-  padding: 2px 0px;
-  text-align: center;
+  margin: 15px 0px;
+  padding: 5px 15px 7px 15px;
 }
 
 /* Collection buttons */
@@ -119,8 +119,10 @@ li {
   margin: 10px 0px;
 }
 
-.tips {
+/* For paragraphs in the Home and Nouns page */
+.para {
   max-width: 600px;
+  margin: 10px;
 }
 
 .stats {

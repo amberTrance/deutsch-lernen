@@ -37,6 +37,10 @@ button:hover,
   color: white;
 }
 
+.auth-btn:hover {
+  cursor: pointer;
+}
+
 button {
   background-color: var(--back);
   color: var(--font);
@@ -63,9 +67,7 @@ th p,
 
 .create-btn {
   border: 2px solid var(--font-2);
-  margin: 15px 0px;
   border-radius: 3px;
-  padding: 5px 15px;
 }
 
 .auth h2, .create-btn {

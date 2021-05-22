@@ -19,7 +19,6 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     axios.get('/api/auth/user')
     .then(result => {
       setIsAuth(result.data.auth)
-      console.log(result.data.auth)
       setLoading(false)
     })
     .catch(err => {

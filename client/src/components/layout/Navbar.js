@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import useFetchUser from '../useFetchUser'
@@ -12,17 +12,26 @@ const Navbar = () => {
     localStorage.removeItem('token')
     window.location = '/';
   }
+ 
+  // Set a node reference for user
+  const node = useRef()
 
-  const clickListener = () => {
-    setClick(false)
-  }
-  
+  // When the user clicks on his username in the navbar:
+  // add a document event listener
+  // and set Click to 'true' which pops up the Logout bubble
   const handleUserClick = () => {
-    
-    if (click) {
+    document.addEventListener('click', handleClick)
+
+    setClick(true)
+  }
+
+  // When the user clicks anywhere but on the user name
+  // the logout bubble goes away and the event listener
+  // for the document is removed
+  const handleClick = (e) => {
+    if (!node.current.contains(e.target)) {
       setClick(false)
-    } else {
-      setClick(true)
+      document.removeEventListener('click', handleClick)
     }
   }
 
@@ -32,7 +41,9 @@ const Navbar = () => {
       <span 
         className="nav-link"
         id="user"
-        onClick={handleUserClick}>
+        onClick={handleUserClick}
+        ref={node} 
+      >
         {username}
       </span>
       { click && <button onClick={handleLogOut} className="nav-link" id="logout">Log out</button> }
