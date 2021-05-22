@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-  const [isAuth, setIsAuth] = useState('')
+  const [isAuth, setIsAuth] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -19,16 +19,18 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     axios.get('/api/auth/user')
     .then(result => {
       setIsAuth(result.data.auth)
+      console.log(result.data.auth)
       setLoading(false)
     })
     .catch(err => {
       setIsAuth(err.response.data.auth)
+      console.log(err.response.data.auth)
       setLoading(false)
     }) 
 
   }, [])
 
-  return ( 
+  return (
     <Route {...rest} render={props => !isAuth && !loading ? (<Redirect to='/login' />) : 
     (<Component {...props}/>)} />
   )

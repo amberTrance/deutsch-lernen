@@ -17,6 +17,9 @@ const Edit = () => {
     
   // Create a state for Table display
   const [inputList, setInputList] = useState([])
+  // State for msg
+  const [msg, setMsg] = useState('')
+  const [err, setErr] = useState('')
 
 
   // Set inputList same as categorz
@@ -54,8 +57,8 @@ const Edit = () => {
     const body = JSON.stringify({noun})
 
     axios.put('/api/nouns', body, config)
-      .then(result => console.log(result))
-      .catch(err => console.log(err))
+      .then(result => setMsg(result.data))
+      .catch(err => setErr(err.data))
 
   }
 
@@ -79,6 +82,8 @@ const Edit = () => {
   return ( 
     <div className="container">
       <div className="leftContent">
+      {msg && <div className="msg success">{msg}</div>}
+      {err && <div className="msg error">{msg}</div>}
         <Buttons collection={ collection }/>
         <h2 className="title">Edit or Delete</h2>
         {!loading && <form autoComplete="off">

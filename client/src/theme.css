@@ -112,7 +112,14 @@ ul {
 /* Error message style */
 .error {
   background-color: var(--violet);
-  color: white;
+}
+
+.success {
+  background-color: rgb(0, 117, 29);
+}
+
+.error, .success {
+  color: white
 }
 
 /* Authentication styling */

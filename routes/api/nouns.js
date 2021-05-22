@@ -58,11 +58,9 @@ router.post('/create', verifyJWT, (req, res) => {
 
   Noun.insertMany(userItemList)
     .then(result => {
-      console.log('success')
       res.json('Success')
     })
     .catch(err => {
-      console.log(err)
       res.status(400).json({errors: [{msg: `Your collection could not be saved. 
       Make sure all your fields are completed and that 
       none of the words you wrote already exists in another collection.`}]})
@@ -82,9 +80,9 @@ router.put('/', (req, res) => {
 
   Noun.findOneAndUpdate({ _id: noun._id }, update, (err, data) => {
     if (err) {
-      res.status(400).json(`${update.english} edit failed`)
+      res.status(400).json(`"${update.english}" edit failed`)
     } else {
-      res.json(`${update.english} edit successful`)
+      res.json(`"${update.english}" edit successful`)
     }
   })
   
