@@ -65,6 +65,7 @@ const Signup = () => {
 						name='username'
 						value={username}
 						onChange={e => onChange(e)}
+						required
 					/>
 					<br/>
 
@@ -74,7 +75,8 @@ const Signup = () => {
 						placeholder='Email'
 						name='email'
 						value={email}
-						onChange={e => onChange(e)} 
+						onChange={e => onChange(e)}
+						required
 					/>
 					<br/>
 
@@ -85,6 +87,7 @@ const Signup = () => {
 						name='password'
 						value={password}
 						onChange={e => onChange(e)}
+						required
 					/>
 					<br/>
 
@@ -95,6 +98,7 @@ const Signup = () => {
 						name='password2'
 						value={password2}
 						onChange={e => onChange(e)}
+						required
 					/>
 					<br/>
 
