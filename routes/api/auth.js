@@ -61,8 +61,8 @@ router.post('/signup',
 
     jwt.sign(
       payload, 
-      config.get("jwtSecret"),
-      { expiresIn: 36000 },
+      process.env.JWT_SECRET,
+      { expiresIn: 3600 },
       (err, token) => {
         if (err) throw err
         res.json({ token })
@@ -110,8 +110,8 @@ router.post('/login',
   
       jwt.sign(
         payload, 
-        config.get("jwtSecret"),
-        { expiresIn: 360000 },
+        process.env.JWT_SECRET,
+        { expiresIn: 3600 },
         (err, token) => {
           if (err) { throw err }
           res.json({ token })
