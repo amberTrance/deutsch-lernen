@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
@@ -34,8 +34,12 @@ const Login = () => {
       .catch(err => {
         if (err.response.data.errors) setErrors([...err.response.data.errors])
       })
-
   }
+  // if user has a token (logged in) redirect
+  if (localStorage.getItem('token')) {
+    return (<Redirect to='/nouns'/>)
+  }
+  
   return ( 
     <div className="center">
       {errors && 

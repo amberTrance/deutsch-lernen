@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const config = require('config')
 
 module.exports = function(req, res, next) {
   const token = req.headers["x-access-token"]
@@ -6,7 +7,7 @@ module.exports = function(req, res, next) {
   if (!token) {
     res.status(401).json({auth: false, msg: 'No token'})
   } else {
-    jwt.verify(token, "much-secret-wow", (err, decoded) => {
+    jwt.verify(token, config.get("jwtSecret"), (err, decoded) => {
       if (err) {
         res.status(401).json({ auth: false, msg: 'Invalid token'})
       } else {

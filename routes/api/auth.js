@@ -5,6 +5,7 @@ const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const verifyJWT = require('../../middleware/verifyJWT')
+const config = require('config')
 
 // Register route
 router.post('/signup',
@@ -60,7 +61,7 @@ router.post('/signup',
 
     jwt.sign(
       payload, 
-      "much-secret-wow",
+      config.get("jwtSecret"),
       { expiresIn: 36000 },
       (err, token) => {
         if (err) throw err
@@ -109,7 +110,7 @@ router.post('/login',
   
       jwt.sign(
         payload, 
-        "much-secret-wow",
+        config.get("jwtSecret"),
         { expiresIn: 360000 },
         (err, token) => {
           if (err) { throw err }

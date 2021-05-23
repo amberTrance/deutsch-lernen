@@ -1,7 +1,7 @@
 const Home = () => {
   return ( 
     <div className="center">
-      <h2>Welcome to my App!</h2>
+      <h2 style={{marginBottom: "15px"}}>Welcome to my App!</h2>
       <p className="para">
         I have built this app to facilitate my german learning process.
         At the present moment, it can be used to create, edit and delete
@@ -15,7 +15,7 @@ const Home = () => {
       </p>
       <p className="para">
         This app will be extended in the future to include verb conjugation,
-        adjectives etc.
+        adjectives, etc.
       </p>
     </div>
    )

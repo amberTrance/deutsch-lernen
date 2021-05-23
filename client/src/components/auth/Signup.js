@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -42,6 +42,11 @@ const Signup = () => {
 				})
 		}
   }
+
+	// if user has a token (logged in) redirect
+	if (localStorage.getItem('token')) {
+		return (<Redirect to='/nouns'/>)
+	}
 
   return (  
     <div className="center">

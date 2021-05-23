@@ -172,6 +172,10 @@ ul {
   color: var(--font-2);
 }
 
+#user {
+  color: var(--imp);
+}
+
 /* Autofill of form input fields */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

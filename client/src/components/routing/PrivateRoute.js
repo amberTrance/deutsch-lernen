@@ -23,7 +23,6 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     })
     .catch(err => {
       setIsAuth(err.response.data.auth)
-      console.log(err.response.data.auth)
       setLoading(false)
     }) 
 
