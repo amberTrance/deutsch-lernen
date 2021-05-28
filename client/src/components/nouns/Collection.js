@@ -57,6 +57,9 @@ const Collection = () => {
             })}
             </tbody>
           </table> }
+          {!loading && <h3 className='stats' style={{"margin-top": "25px"}}>
+            {`Words Count: ${category.length}`}
+          </h3>}
         </div>
         <CollectionNav list={list}/>
     </div>
