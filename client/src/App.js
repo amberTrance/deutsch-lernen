@@ -18,6 +18,8 @@ import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 // protected route
 import PrivateRoute from './components/routing/PrivateRoute'
+// Verbs
+import CreateVerb from './components/verbs/Create'
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
   
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
+
+            <Route exact path='/verbs/create' component={CreateVerb} />
 
             <Route component={NotFound} />
           </Switch>

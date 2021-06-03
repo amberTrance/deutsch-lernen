@@ -1,0 +1,17 @@
+.indikativ {
+  display: flex
+}
+
+.tense-box {
+  display: flex;
+  margin: 15px;
+}
+
+.verb h3 {
+  text-align: center;
+  margin: 15px 0px 8px 0px;
+}
+
+.tense-box table {
+  margin-top: 0px;
+}
