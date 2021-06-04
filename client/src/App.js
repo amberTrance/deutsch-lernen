@@ -20,6 +20,8 @@ import Signup from './components/auth/Signup'
 import PrivateRoute from './components/routing/PrivateRoute'
 // Verbs
 import CreateVerb from './components/verbs/Create'
+import Verbs from './components/verbs/Verbs'
+import Verb from './components/verbs/Verb'
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
             <Route exact path='/signup' component={Signup} />
 
             <Route exact path='/verbs/create' component={CreateVerb} />
+            <Route exact path='/verbs' component={Verbs} />
+            <Route exact path='/verbs/:verb' component={Verb} />
 
             <Route component={NotFound} />
           </Switch>

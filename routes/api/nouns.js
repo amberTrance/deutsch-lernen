@@ -50,7 +50,6 @@ router.get('/:collection', verifyJWT, async (req, res) => {
 
 // Add nouns collection
 router.post('/create', verifyJWT, (req, res) => {
-  // Return an errors array if received data is incorrect
   const {collectionName, inputList} = req.body
   
   // Add user property to each item in the array

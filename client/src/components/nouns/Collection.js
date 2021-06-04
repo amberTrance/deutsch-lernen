@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams } from 'react-router';
 import useFetch from '../useFetchCategory'
 import CollectionNav from './CollectionNav'
 import Buttons from './Buttons'
@@ -28,7 +28,6 @@ const Collection = () => {
                   <td>
                     <p
                       className="display" 
-                      type="text" 
                       name="english"
                     >
                       {noun.english}
@@ -37,7 +36,6 @@ const Collection = () => {
                   <td>
                     <p
                       className="display"
-                      type="text" 
                       name="singular"  
                     >
                       {noun.singular}
@@ -46,7 +44,6 @@ const Collection = () => {
                   <td>
                     <p
                       className="display" 
-                      type="text" 
                       name="plural" 
                     >
                       {noun.plural}

@@ -28,8 +28,7 @@ const Create = () => {
     futurePerfect: { ich: '' },
     subjunctiveFuture: { ich: '' },
     subjunctivePastPerfect: { ich: '' },
-    imperative: { du: '' },
-    user: "60a39f9180c5910930a63cae"
+    imperative: { du: '' }
   })
 
   const handleInputChange = (e) => {
@@ -74,21 +73,27 @@ const Create = () => {
           autoComplete="off" 
         >
           <div>
-            <h3>English:</h3>
-            <input
-              type="text"
-              className="input"
-              name="english"
-              onChange={e => handleInputChange(e)}
-            />
+            <h3>English:
+              <span>
+                <input
+                  type="text"
+                  className="input"
+                  name="english"
+                  onChange={e => handleInputChange(e)}
+                />
+              </span>
+            </h3>
 
-            <h3>German Infinitive:</h3>
-            <input
-              type="text"
-              className="input"
-              name="infinitive" 
-              onChange={e => handleInputChange(e)}
-            />
+            <h3>German Infinitive:
+              <span>
+                <input
+                  type="text"
+                  className="input"
+                  name="infinitive" 
+                  onChange={e => handleInputChange(e)}
+                />
+              </span>
+            </h3>
           </div>
 
           <h3>INDIKATIV</h3>

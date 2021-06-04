@@ -37,6 +37,7 @@ const Navbar = () => {
 
   const user = (
     <div className="links">
+      <Link to='/verbs' className="nav-link">Verbs</Link>
       <Link to='/nouns' className="nav-link">Nouns</Link>
       <span 
         className="nav-link"

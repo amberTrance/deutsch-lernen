@@ -1,10 +1,10 @@
-.indikativ {
-  display: flex
+.indikativ, .tense-box {
+  display: flex;
 }
 
 .tense-box {
-  display: flex;
   margin: 15px;
+  justify-content: center;
 }
 
 .verb h3 {
