@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import axios from 'axios'
+import { useParams } from 'react-router'
 import './Verbs.css'
+import useFetchOne from '../useFetchOne'
+import Buttons from './Buttons'
 
-const Create = () => {
+const Conjugate = () => {
+  const { verb } = useParams()
+
+  const { data, loading } = useFetchOne(`/api/verbs/${verb}`)
+  
   const [inputList, setInputList] = useState({
     english: '',
     infinitive: '',
@@ -31,65 +37,90 @@ const Create = () => {
     imperative: { du: '' }
   })
 
+  // Classes
+  const [inputClass, setInputClass] = useState({
+    english: 'input',
+    infinitive: 'input',
+    present: {
+      ich: 'input',
+      du: 'input',
+      er: 'input',
+      wir: 'input',
+      ihr: 'input',
+      sie: 'input'
+    },
+    simplePast: {
+        ich: 'input',
+        du: 'input',
+        er: 'input',
+        wir: 'input',
+        ihr: 'input',
+        sie: 'input'
+    },
+    presentPerfect: { ich: 'input' },
+    pastPerfect: { ich: 'input' },
+    future: { ich: 'input' },
+    futurePerfect: { ich: 'input' },
+    subjunctiveFuture: { ich: 'input' },
+    subjunctivePastPerfect: { ich: 'input' },
+    imperative: { du: 'input' }
+  })
+
   const handleInputChange = (e, x) => {
     const newList = {...inputList}
     if (x === undefined) {
       newList[e.target.name] = e.target.value
     } else {
       newList[x][e.target.name] = e.target.value
-    }   
+    }
     setInputList(newList)
+  }
+
+  const handleEnter = (e, x) => {
+    if (e.key === 'Enter') {
+      const newClass = {...inputClass}
+      const {name} = e.target
+
+      if (x === undefined) {
+        inputList[name] === data[name] ? newClass[name] = 'input correct' : newClass[name] = 'input false'
+      } else {
+        inputList[x][name] === data[x][name] ? newClass[x][name] = 'input correct' : newClass[x][name] = 'input false'
+      }
+      setInputClass(newClass)
+    }
   }
 
   const onSubmit = e => {
     e.preventDefault()
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    const body = JSON.stringify(inputList)
-    
-    axios.post('/api/verbs/create', body, config)
-      .then(res => {
-        window.location = `/verbs/${inputList.infinitive}`
-      })
-      .catch(err => console.log(err))
   }
 
   return (
     <div className="container">
       <div className="leftContent">
-        <h2>Create New Verb</h2>
-        <form 
+        <Buttons verb={verb} />
+        <h2>Conjugate the verb</h2>
+        {!loading && <form 
           className="verb"
           onSubmit={e => onSubmit(e)} 
           autoComplete="off" 
         >
           <div>
-            <h3>English:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="english"
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
+            <h3>German Infinitive:</h3>
+            <p
+              style={{textAlign: "center"}}
+            >{data.infinitive}</p>
 
-            <h3>German Infinitive:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="infinitive" 
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
+
+            <h3>English:</h3>
+              <input
+                type="text"
+                className={inputClass.english}
+                value={inputList.english}
+                name="english"
+                onChange={e => handleInputChange(e)}
+                onKeyPress={e => handleEnter(e)}
+                style={{textAlign: "center"}}
+              />
           </div>
 
           <h3>INDIKATIV</h3>
@@ -103,9 +134,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.present.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'present')}
+                        onKeyPress={e => handleEnter(e, 'present')}
                       />
                     </td>
                   </tr>
@@ -115,9 +147,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.present.du}
                         name="du"
                         onChange={e => handleInputChange(e, 'present')}
+                        onKeyPress={e => handleEnter(e, 'present')}
                       />
                     </td>
                   </tr>
@@ -128,9 +161,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.present.er}
                         name="er"
                         onChange={e => handleInputChange(e, 'present')}
+                        onKeyPress={e => handleEnter(e, 'present')}
                       />
                     </td>
                   </tr>
@@ -140,9 +174,10 @@ const Create = () => {
                     <td>
                     <input
                       type="text"
-                      className="input"
+                      className={inputClass.present.wir}
                       name="wir"
                       onChange={e => handleInputChange(e, 'present')}
+                      onKeyPress={e => handleEnter(e, 'present')}
                     />
                     </td>
                   </tr>
@@ -152,9 +187,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.present.ihr}
                         name="ihr"
                         onChange={e => handleInputChange(e, 'present')}
+                        onKeyPress={e => handleEnter(e, 'present')}
                       />
                     </td>
                   </tr>
@@ -164,9 +200,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.present.sie}
                         name="sie"
                         onChange={e => handleInputChange(e, 'present')}
+                        onKeyPress={e => handleEnter(e, 'present')}
                       />
                     </td>
                   </tr>
@@ -184,9 +221,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.simplePast.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'simplePast')}
+                        onKeyPress={e => handleEnter(e, 'simplePast')}
                       />
                     </td>
                   </tr>
@@ -196,9 +234,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.simplePast.du}
                         name="du"
                         onChange={e => handleInputChange(e,'simplePast')}
+                        onKeyPress={e => handleEnter(e, 'simplePast')}
                       />
                     </td>
                   </tr>
@@ -209,9 +248,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.simplePast.er}
                         name="er"
                         onChange={e => handleInputChange(e,'simplePast')}
+                        onKeyPress={e => handleEnter(e, 'simplePast')}
                       />
                     </td>
                   </tr>
@@ -221,9 +261,10 @@ const Create = () => {
                     <td>
                     <input
                       type="text"
-                      className="input"
+                      className={inputClass.simplePast.wir}
                       name="wir"
                       onChange={e => handleInputChange(e,'simplePast')}
+                      onKeyPress={e => handleEnter(e, 'simplePast')}
                     />
                     </td>
                   </tr>
@@ -233,9 +274,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.simplePast.ihr}
                         name="ihr"
                         onChange={e => handleInputChange(e, 'simplePast')}
+                        onKeyPress={e => handleEnter(e, 'simplePast')}
                       />
                     </td>
                   </tr>
@@ -245,9 +287,10 @@ const Create = () => {
                     <td>
                       <input
                         type="text"
-                        className="input"
+                        className={inputClass.simplePast.sie}
                         name="sie"
                         onChange={e => handleInputChange(e, 'simplePast')}
+                        onKeyPress={e => handleEnter(e, 'simplePast')}
                       />
                     </td>
                   </tr>
@@ -267,9 +310,10 @@ const Create = () => {
                     <td>
                     <input 
                       type="text" 
-                      className="input"
+                      className={inputClass.presentPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'presentPerfect')}
+                      onKeyPress={e => handleEnter(e, 'presentPerfect')}
                     />
                     </td>
                   </tr>
@@ -286,9 +330,10 @@ const Create = () => {
                     <td>
                     <input 
                       type="text" 
-                      className="input"
+                      className={inputClass.pastPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'pastPerfect')}
+                      onKeyPress={e => handleEnter(e, 'presentPerfect')}
                     />
                     </td>
                   </tr>
@@ -307,9 +352,10 @@ const Create = () => {
                     <td>
                       <input 
                         type="text" 
-                        className="input"
+                        className={inputClass.future.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'future')}
+                        onKeyPress={e => handleEnter(e, 'future')}
                       />
                     </td>
                   </tr>
@@ -326,9 +372,10 @@ const Create = () => {
                     <td>
                     <input 
                       type="text" 
-                      className="input"
+                      className={inputClass.futurePerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'futurePerfect')}
+                      onKeyPress={e => handleEnter(e, 'futurePerfect')}
                     />
                     </td>
                   </tr>
@@ -348,9 +395,10 @@ const Create = () => {
                     <td>
                       <input 
                         type="text" 
-                        className="input"
+                        className={inputClass.subjunctiveFuture.ich}
                         name="ich" 
                         onChange={e => handleInputChange(e, 'subjunctiveFuture')}
+                        onKeyPress={e => handleEnter(e, 'subjunctiveFuture')}
                       />
                     </td>
                   </tr>
@@ -367,9 +415,10 @@ const Create = () => {
                     <td>
                     <input 
                       type="text" 
-                      className="input"
+                      className={inputClass.subjunctivePastPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'subjunctivePastPerfect')}
+                      onKeyPress={e => handleEnter(e, 'subjunctivePastPerfect')}
                     />
                     </td>
                   </tr>
@@ -385,9 +434,10 @@ const Create = () => {
                     <td>
                     <input 
                       type="text" 
-                      className="input"
+                      className={inputClass.imperative.du}
                       name="du"
                       onChange={e => handleInputChange(e, 'imperative')}
+                      onKeyPress={e => handleEnter(e, 'imperative')}
                     />
                     </td>
                     <td><label htmlFor="du">du</label></td>
@@ -397,16 +447,10 @@ const Create = () => {
             </div>
           </div>
 
-          <div className="submit-box">
-            <input 
-              type="submit" 
-              value="Add Verb"
-              className="submit"/>
-          </div>
-        </form>
+        </form>}
       </div>
     </div>
   )
 }
 
-export default Create;
+export default Conjugate;

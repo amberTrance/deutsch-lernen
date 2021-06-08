@@ -82,8 +82,8 @@ const Edit = () => {
   return ( 
     <div className="container">
       <div className="leftContent">
-      {msg && <div className="msg success">{msg}</div>}
-      {err && <div className="msg error">{msg}</div>}
+        {msg && <div className="msg success">{msg}</div>}
+        {err && <div className="msg error">{msg}</div>}
         <Buttons collection={ collection }/>
         <h2 className="title">Edit or Delete</h2>
         {!loading && <form autoComplete="off">

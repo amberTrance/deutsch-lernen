@@ -1,95 +1,97 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import useFetchOne from '../useFetchOne'
+import Buttons from './Buttons'
 import axios from 'axios'
-import './Verbs.css'
 
-const Create = () => {
-  const [inputList, setInputList] = useState({
-    english: '',
-    infinitive: '',
-    present: {
-      ich: '',
-      du: '',
-      er: '',
-      wir: '',
-      ihr: '',
-      sie: ''
-    },
-    simplePast: {
-        ich: '',
-        du: '',
-        er: '',
-        wir: '',
-        ihr: '',
-        sie: ''
-    },
-    presentPerfect: { ich: '' },
-    pastPerfect: { ich: '' },
-    future: { ich: '' },
-    futurePerfect: { ich: '' },
-    subjunctiveFuture: { ich: '' },
-    subjunctivePastPerfect: { ich: '' },
-    imperative: { du: '' }
-  })
+const Edit = () => {
+  const { verb } = useParams()
+  const [word, setWord] = useState({})
+  const [msg, setMsg] = useState('')
+  const [err, setErr] = useState('')
 
+  // Get word from db
+  const { data, loading } = useFetchOne(`/api/verbs/${verb}`)
+
+  // Set new state containing word
+  useEffect(() => {
+    setWord(data)
+  }, [data])
+
+  // Edit word with input change
   const handleInputChange = (e, x) => {
-    const newList = {...inputList}
+    const { name, value } = e.target
+
+    const edit = {...word}
     if (x === undefined) {
-      newList[e.target.name] = e.target.value
+      edit[name] = value
     } else {
-      newList[x][e.target.name] = e.target.value
-    }   
-    setInputList(newList)
+      edit[x][name] = value
+    }
+
+    setWord(edit)
   }
 
+  // Send changes to db
   const onSubmit = e => {
-    e.preventDefault()
 
+  }
+
+  const handleDeleteClick = () => {
+    const id = word._id
+
+    axios.delete(`/api/verbs/${id}`)
+    .then(res => {
+      window.location = '/verbs'
+    })
+    .catch(err => console.log(err))
+  }
+
+  const handleEditClick = () => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type' : 'application/json'
       }
     }
 
-    const body = JSON.stringify(inputList)
-    
-    axios.post('/api/verbs/create', body, config)
-      .then(res => {
-        window.location = `/verbs/${inputList.infinitive}`
-      })
-      .catch(err => console.log(err))
-  }
+    const body = JSON.stringify({word})
 
-  return (
+    axios.put('/api/verbs', body, config)
+      .then(result => setMsg(result.data))
+      .catch(err => setErr(err.data))
+  }
+ 
+  return (  
     <div className="container">
       <div className="leftContent">
-        <h2>Create New Verb</h2>
-        <form 
+        <Buttons verb={verb} />
+        <h2>Conjugate the verb</h2>
+        {!loading && <form 
           className="verb"
           onSubmit={e => onSubmit(e)} 
           autoComplete="off" 
         >
           <div>
-            <h3>English:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="english"
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
+            <h3>German Infinitive:</h3>
+            <input
+                type="text"
+                className="input"
+                value={word.infinitive}
+                name="english"
+                onChange={e => handleInputChange(e)}
+                style={{textAlign: "center"}}
+              />
 
-            <h3>German Infinitive:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="infinitive" 
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
+
+            <h3>English:</h3>
+              <input
+                type="text"
+                className="input"
+                value={word.english}
+                name="english"
+                onChange={e => handleInputChange(e)}
+                style={{textAlign: "center"}}
+              />
           </div>
 
           <h3>INDIKATIV</h3>
@@ -104,6 +106,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.present.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'present')}
                       />
@@ -116,6 +119,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.present.du}
                         name="du"
                         onChange={e => handleInputChange(e, 'present')}
                       />
@@ -129,6 +133,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.present.er}
                         name="er"
                         onChange={e => handleInputChange(e, 'present')}
                       />
@@ -141,6 +146,7 @@ const Create = () => {
                     <input
                       type="text"
                       className="input"
+                      value={word.present.wir}
                       name="wir"
                       onChange={e => handleInputChange(e, 'present')}
                     />
@@ -153,6 +159,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.present.ihr}
                         name="ihr"
                         onChange={e => handleInputChange(e, 'present')}
                       />
@@ -165,6 +172,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.present.sie}
                         name="sie"
                         onChange={e => handleInputChange(e, 'present')}
                       />
@@ -185,6 +193,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.simplePast.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
@@ -197,6 +206,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.simplePast.du}
                         name="du"
                         onChange={e => handleInputChange(e,'simplePast')}
                       />
@@ -210,6 +220,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.simplePast.er}
                         name="er"
                         onChange={e => handleInputChange(e,'simplePast')}
                       />
@@ -222,6 +233,7 @@ const Create = () => {
                     <input
                       type="text"
                       className="input"
+                      value={word.simplePast.wir}
                       name="wir"
                       onChange={e => handleInputChange(e,'simplePast')}
                     />
@@ -234,6 +246,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.simplePast.ihr}
                         name="ihr"
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
@@ -246,6 +259,7 @@ const Create = () => {
                       <input
                         type="text"
                         className="input"
+                        value={word.simplePast.sie}
                         name="sie"
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
@@ -268,6 +282,7 @@ const Create = () => {
                     <input 
                       type="text" 
                       className="input"
+                      value={word.presentPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'presentPerfect')}
                     />
@@ -287,6 +302,7 @@ const Create = () => {
                     <input 
                       type="text" 
                       className="input"
+                      value={word.pastPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'pastPerfect')}
                     />
@@ -308,6 +324,7 @@ const Create = () => {
                       <input 
                         type="text" 
                         className="input"
+                        value={word.future.ich}
                         name="ich"
                         onChange={e => handleInputChange(e, 'future')}
                       />
@@ -327,6 +344,7 @@ const Create = () => {
                     <input 
                       type="text" 
                       className="input"
+                      value={word.futurePerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'futurePerfect')}
                     />
@@ -349,6 +367,7 @@ const Create = () => {
                       <input 
                         type="text" 
                         className="input"
+                        value={word.subjunctiveFuture.ich}
                         name="ich" 
                         onChange={e => handleInputChange(e, 'subjunctiveFuture')}
                       />
@@ -368,6 +387,7 @@ const Create = () => {
                     <input 
                       type="text" 
                       className="input"
+                      value={word.subjunctivePastPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'subjunctivePastPerfect')}
                     />
@@ -386,6 +406,7 @@ const Create = () => {
                     <input 
                       type="text" 
                       className="input"
+                      value={word.imperative.du}
                       name="du"
                       onChange={e => handleInputChange(e, 'imperative')}
                     />
@@ -397,16 +418,30 @@ const Create = () => {
             </div>
           </div>
 
-          <div className="submit-box">
-            <input 
-              type="submit" 
-              value="Add Verb"
-              className="submit"/>
+          <div 
+            className="btn-box"
+            style={{margin: "20px"}}
+          >
+            <div 
+              className="btn btn-edit" 
+              onClick={handleEditClick}
+            >
+              Edit
+            </div>
+            <div 
+              className="btn btn-delete" 
+              onClick={handleDeleteClick}
+            >
+              Delete
+            </div>
           </div>
-        </form>
+
+        </form>}
+        {msg && <div className="msg success">{msg}</div>}
+        {err && <div className="msg error">{msg}</div>}
       </div>
     </div>
   )
 }
-
-export default Create;
+ 
+export default Edit

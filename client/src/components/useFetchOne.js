@@ -17,7 +17,7 @@ const useFetchOne = (url) => {
 
       axios.get(url)
       .then(response => {
-        setData(response.data.word)
+        setData(...response.data.word)
         setLoading(false)
       })
       .catch(error => {

@@ -45,5 +45,28 @@ router.get('/:verb', verifyJWT, async (req, res) => {
    
 })
 
+router.put('/', verifyJWT, (req, res) => {
+  const { word } = req.body
+  console.log(word)
+
+  console.log('wtf')
+  Verb.findOneAndUpdate({ _id: word._id }, word, (err, data) => {
+    if (err) {
+      res.status(400).json(`"${word.infinitive}" edit failed`)
+    } else {
+      res.json(`"${word.infinitive}" edit successful`)
+    }
+  })
+  
+})
+
+
+router.delete('/:id', verifyJWT, (req, res) => {
+  const id = req.params.id
+
+  Verb.findByIdAndDelete(id)
+    .then(result => res.json('Success'))
+    .catch(err => res.status(400).json('delete failed'))
+})
 
 module.exports = router

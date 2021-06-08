@@ -2,7 +2,7 @@ import useFetchList from '../useFetchList'
 import { Link } from 'react-router-dom'
 
 const Verbs = () => {
-  const { data: list, loading, count, error } = useFetchList('/api/verbs')
+  const { data: list, loading} = useFetchList('/api/verbs')
 
   return (
     <div className="center">

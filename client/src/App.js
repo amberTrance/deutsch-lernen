@@ -22,6 +22,8 @@ import PrivateRoute from './components/routing/PrivateRoute'
 import CreateVerb from './components/verbs/Create'
 import Verbs from './components/verbs/Verbs'
 import Verb from './components/verbs/Verb'
+import Conjugate from './components/verbs/Conjugate'
+import EditVerb from './components/verbs/Edit'
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
             <Route exact path='/verbs/create' component={CreateVerb} />
             <Route exact path='/verbs' component={Verbs} />
             <Route exact path='/verbs/:verb' component={Verb} />
+            <Route exact path='/verbs/:verb/conjugate' component={Conjugate} />
+            <Route exact path='/verbs/:verb/edit' component={EditVerb} />
 
             <Route component={NotFound} />
           </Switch>

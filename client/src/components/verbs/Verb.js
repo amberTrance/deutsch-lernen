@@ -1,17 +1,17 @@
 import { useParams } from 'react-router'
 import useFetchOne from '../useFetchOne'
+import Buttons from './Buttons'
 
 const Verb = () => {
   const { verb } = useParams()
 
-  const { data, error, loading } = useFetchOne(`/api/verbs/${verb}`)
-  const word = data[0]
+  const { data : word, error, loading } = useFetchOne(`/api/verbs/${verb}`)
   
   return (
     <div className="container">
       <div className="leftContent">
-
-        {!loading && <div className="verb" >
+        <Buttons verb={verb} />
+        {!loading && <div className="verb see" >
           <div>
             <h3>English: 
               <span
@@ -282,13 +282,13 @@ const Verb = () => {
               <table>
                 <tbody>
                   <tr>
-                    <td><label htmlFor="du">du</label></td>
                     <td>
                     <p
-                        className="display"
-                        name="singular"  
-                      >{word.imperative.du}</p>
+                      className="display"
+                      name="singular"  
+                    >{word.imperative.du}</p>
                     </td>
+                    <td><label htmlFor="du">du</label></td>
                   </tr>
                 </tbody>
               </table>
