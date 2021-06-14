@@ -13,14 +13,28 @@ const Verbs = () => {
         <button className="create-btn">create new</button>
       </Link>
       {list.length > 0 && <h2>Verbs</h2>}
-      {!loading && list.map((verb, i) => {
-        return (
-          <Link 
-            to={`/verbs/${verb}`} 
-            key={i}>{verb}
-          </Link>
-        )
-      })}
+      <div className="verbDisplay">
+        {!loading && list.map(arr => {
+          return (
+            <div className="letter">
+              <h3>{arr[0][0].toUpperCase()}</h3>
+              <ul>
+                {arr.map((verb,i) => {
+                  console.log(verb)
+                  return (
+                    <li>
+                      <Link 
+                        to={`/verbs/${verb}`} 
+                        key={i}>{verb}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

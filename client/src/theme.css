@@ -168,7 +168,7 @@ ul {
 	margin-top: -10px;
 }
 
-.stats, .verb h3 {
+.stats, .verb h3, .verbDisplay h3 {
   color: var(--font-2);
 }
 

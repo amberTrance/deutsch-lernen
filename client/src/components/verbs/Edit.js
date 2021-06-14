@@ -71,28 +71,35 @@ const Edit = () => {
           onSubmit={e => onSubmit(e)} 
           autoComplete="off" 
         >
-          <div>
-            <h3>German Infinitive:</h3>
-            <input
-                type="text"
-                className="input"
-                value={word.infinitive}
-                name="infinitive"
-                onChange={e => handleInputChange(e)}
-                style={{textAlign: "center"}}
-              />
+          <table>
+            <tbody>
+              <tr>
+                <td><h3>German Infinitive</h3></td>
+                <td>
+                  <input
+                    type="text"
+                    className="input"
+                    value={word.infinitive}
+                    name="infinitive"
+                    onChange={e => handleInputChange(e)}
+                  />
+                </td>
+              </tr>
 
-
-            <h3>English:</h3>
-              <input
-                type="text"
-                className="input"
-                value={word.english}
-                name="english"
-                onChange={e => handleInputChange(e)}
-                style={{textAlign: "center"}}
-              />
-          </div>
+              <tr>
+                <td><h3>English</h3></td>
+                <td>
+                  <input
+                    type="text"
+                    className="input"
+                    value={word.english}
+                    name="english"
+                    onChange={e => handleInputChange(e)}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <h3>INDIKATIV</h3>
           <div className="tense-box">

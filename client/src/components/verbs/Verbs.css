@@ -1,4 +1,4 @@
-.indikativ, .tense-box {
+.indikativ, .tense-box, .verbDisplay {
   display: flex;
 }
 
@@ -18,4 +18,21 @@
 
 .see table {
   margin: 20px;
+}
+
+.letter {
+  padding: 25px;
+}
+
+.verbDisplay {
+  max-width: 700px;
+  flex-wrap: wrap;
+}
+
+.verbDisplay ul {
+  padding: 0px;
+}
+
+.letter h3 {
+  text-align: center;
 }

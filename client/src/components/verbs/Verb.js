@@ -11,22 +11,30 @@ const Verb = () => {
     <div className="container">
       <div className="leftContent">
         <Buttons verb={verb} />
-        {!loading && <div className="verb see" >
-          <div>
-            <h3>English: 
-              <span
-                className="display"
-                name="singular"  
-              > {word.english}</span>
-            </h3>
+        {!loading && <div className="verb see">
+          <table className="tense-box">
+            <tbody>
+              <tr>
+                <td><h3>German Infinitive</h3></td>
+                <td>
+                  <p
+                    className="display"
+                    name="singular"  
+                  >{word.infinitive}</p>
+                </td>
+              </tr>
 
-            <h3>German Infinitive: 
-              <span
-                className="display"
-                name="singular"  
-              > {word.infinitive}</span>
-            </h3>
-          </div>
+              <tr>
+                <td><h3>English Infinitive</h3></td>
+                <td>
+                  <p
+                    className="display"
+                    name="singular"  
+                  >{word.english}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <h3>INDIKATIV</h3>
           <div className="tense-box">

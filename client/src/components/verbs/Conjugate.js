@@ -104,24 +104,32 @@ const Conjugate = () => {
           onSubmit={e => onSubmit(e)} 
           autoComplete="off" 
         >
-          <div>
-            <h3>German Infinitive:</h3>
-            <p
-              style={{textAlign: "center"}}
-            >{data.infinitive}</p>
+          <table>
+            <tbody>
+              <tr>
+                <td><h3>German Infinitive</h3></td>
+                <td>
+                  <p>{data.infinitive}</p>
+                </td>
+              </tr>
 
-
-            <h3>English:</h3>
-              <input
-                type="text"
-                className={inputClass.english}
-                value={inputList.english}
-                name="english"
-                onChange={e => handleInputChange(e)}
-                onKeyPress={e => handleEnter(e)}
-                style={{textAlign: "center"}}
-              />
-          </div>
+              <tr>
+                <td>
+                  <h3>English Infinitive</h3>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className={inputClass.english}
+                    value={inputList.english}
+                    name="english"
+                    onChange={e => handleInputChange(e)}
+                    onKeyPress={e => handleEnter(e)}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <h3>INDIKATIV</h3>
           <div className="tense-box">
