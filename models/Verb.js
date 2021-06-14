@@ -21,22 +21,27 @@ const VerbSchema = mongoose.Schema({
     },
     du : {
       type: String,
+      required: true,
       trim: true
     },
     er : {
       type: String,
+      required: true,
       trim: true
     },
     wir : {
       type: String,
+      required: true,
       trim: true
     },
     ihr : {
       type: String,
+      required: true,
       trim: true
     },
     sie : {
       type: String,
+      required: true,
       trim: true
     }
   },
@@ -49,22 +54,27 @@ const VerbSchema = mongoose.Schema({
     },
     du : {
       type: String,
+      required: true,
       trim: true
     },
     er : {
       type: String,
+      required: true,
       trim: true
     },
     wir : {
       type: String,
+      required: true,
       trim: true
     },
     ihr : {
       type: String,
+      required: true,
       trim: true
     },
     sie : {
       type: String,
+      required: true,
       trim: true
     }
   },
@@ -130,7 +140,7 @@ const VerbSchema = mongoose.Schema({
 	}
 }, { timestamps: true })
 
-VerbSchema.index({english: 1, infinitive: 1, user: 1}, {unique: true})
+VerbSchema.index({infinitive: 1, user: 1}, {unique: true})
 
 const Verb = mongoose.model('Verb', VerbSchema)
 

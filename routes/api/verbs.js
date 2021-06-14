@@ -10,10 +10,20 @@ router.post('/create', verifyJWT, (req, res) => {
   verb.user = id
 
   const newVerb = new Verb(verb)
+  
+  Verb.find({english: verb.english, infinitive: verb.infinitive, user: verb.user})
+    .then(result => {
+      if (result.length > 0) 
+        return res.json({errors: [{msg: 'This verb exists already in your collection!'}]})
+    })
+    .then()
 
   newVerb.save()
     .then(result => res.json('Success'))
-    .catch(err => console.log(err))
+    .catch(err => {
+      res.status(400)
+        .json({errors: [{msg: 'Make sure you completed all the fields before sending!'}]})
+    })
 })
 
 
@@ -47,9 +57,7 @@ router.get('/:verb', verifyJWT, async (req, res) => {
 
 router.put('/', verifyJWT, (req, res) => {
   const { word } = req.body
-  console.log(word)
-
-  console.log('wtf')
+  
   Verb.findOneAndUpdate({ _id: word._id }, word, (err, data) => {
     if (err) {
       res.status(400).json(`"${word.infinitive}" edit failed`)

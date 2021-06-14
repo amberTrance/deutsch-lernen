@@ -77,7 +77,7 @@ const Edit = () => {
                 type="text"
                 className="input"
                 value={word.infinitive}
-                name="english"
+                name="infinitive"
                 onChange={e => handleInputChange(e)}
                 style={{textAlign: "center"}}
               />

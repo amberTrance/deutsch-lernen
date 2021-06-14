@@ -3,6 +3,7 @@ import axios from 'axios'
 import './Verbs.css'
 
 const Create = () => {
+  const [errors, setErrors] = useState([])
   const [inputList, setInputList] = useState({
     english: '',
     infinitive: '',
@@ -53,10 +54,15 @@ const Create = () => {
     const body = JSON.stringify(inputList)
     
     axios.post('/api/verbs/create', body, config)
-      .then(res => {
-        window.location = `/verbs/${inputList.infinitive}`
+      .then(response => {
+        if(response.data.errors !== undefined) {
+          setErrors(response.data.errors)
+          console.log(response.data.errors)
+        } else {
+          window.location = `/verbs/${inputList.infinitive}`
+        }
       })
-      .catch(err => console.log(err))
+      .catch(err => setErrors(err.response.data.errors))
   }
 
   return (
@@ -68,29 +74,37 @@ const Create = () => {
           onSubmit={e => onSubmit(e)} 
           autoComplete="off" 
         >
-          <div>
-            <h3>English:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="english"
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <h3 style={{float: "right"}}>English</h3>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    className="input"
+                    name="english"
+                    required
+                    onChange={e => handleInputChange(e)}
+                  />
+                </td>
+              </tr>
 
-            <h3>German Infinitive:
-              <span>
-                <input
-                  type="text"
-                  className="input"
-                  name="infinitive" 
-                  onChange={e => handleInputChange(e)}
-                />
-              </span>
-            </h3>
-          </div>
+              <tr>
+                <td><h3>German Infinitive</h3></td>
+                <td>
+                  <input
+                    type="text"
+                    className="input"
+                    name="infinitive"
+                    required
+                    onChange={e => handleInputChange(e)}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <h3>INDIKATIV</h3>
           <div className="tense-box">
@@ -105,6 +119,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="ich"
+                        required
                         onChange={e => handleInputChange(e, 'present')}
                       />
                     </td>
@@ -117,6 +132,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="du"
+                        required
                         onChange={e => handleInputChange(e, 'present')}
                       />
                     </td>
@@ -130,6 +146,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="er"
+                        required
                         onChange={e => handleInputChange(e, 'present')}
                       />
                     </td>
@@ -142,6 +159,7 @@ const Create = () => {
                       type="text"
                       className="input"
                       name="wir"
+                      required
                       onChange={e => handleInputChange(e, 'present')}
                     />
                     </td>
@@ -154,6 +172,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="ihr"
+                        required
                         onChange={e => handleInputChange(e, 'present')}
                       />
                     </td>
@@ -166,6 +185,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="sie"
+                        required
                         onChange={e => handleInputChange(e, 'present')}
                       />
                     </td>
@@ -186,6 +206,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="ich"
+                        required
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
                     </td>
@@ -198,6 +219,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="du"
+                        required
                         onChange={e => handleInputChange(e,'simplePast')}
                       />
                     </td>
@@ -211,6 +233,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="er"
+                        required
                         onChange={e => handleInputChange(e,'simplePast')}
                       />
                     </td>
@@ -223,6 +246,7 @@ const Create = () => {
                       type="text"
                       className="input"
                       name="wir"
+                      required
                       onChange={e => handleInputChange(e,'simplePast')}
                     />
                     </td>
@@ -235,6 +259,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="ihr"
+                        required
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
                     </td>
@@ -247,6 +272,7 @@ const Create = () => {
                         type="text"
                         className="input"
                         name="sie"
+                        required
                         onChange={e => handleInputChange(e, 'simplePast')}
                       />
                     </td>
@@ -269,6 +295,7 @@ const Create = () => {
                       type="text" 
                       className="input"
                       name="ich"
+                      required
                       onChange={e => handleInputChange(e, 'presentPerfect')}
                     />
                     </td>
@@ -288,6 +315,7 @@ const Create = () => {
                       type="text" 
                       className="input"
                       name="ich"
+                      required
                       onChange={e => handleInputChange(e, 'pastPerfect')}
                     />
                     </td>
@@ -309,6 +337,7 @@ const Create = () => {
                         type="text" 
                         className="input"
                         name="ich"
+                        required
                         onChange={e => handleInputChange(e, 'future')}
                       />
                     </td>
@@ -328,6 +357,7 @@ const Create = () => {
                       type="text" 
                       className="input"
                       name="ich"
+                      required
                       onChange={e => handleInputChange(e, 'futurePerfect')}
                     />
                     </td>
@@ -349,7 +379,8 @@ const Create = () => {
                       <input 
                         type="text" 
                         className="input"
-                        name="ich" 
+                        name="ich"
+                        required
                         onChange={e => handleInputChange(e, 'subjunctiveFuture')}
                       />
                     </td>
@@ -369,6 +400,7 @@ const Create = () => {
                       type="text" 
                       className="input"
                       name="ich"
+                      required
                       onChange={e => handleInputChange(e, 'subjunctivePastPerfect')}
                     />
                     </td>
@@ -387,6 +419,7 @@ const Create = () => {
                       type="text" 
                       className="input"
                       name="du"
+                      required
                       onChange={e => handleInputChange(e, 'imperative')}
                     />
                     </td>
@@ -404,6 +437,13 @@ const Create = () => {
               className="submit"/>
           </div>
         </form>
+
+        { errors && errors.map((error,i) => 
+          <div 
+            className="msg error"
+            key={`${i}-error`}>{error.msg}
+          </div>
+        ) }
       </div>
     </div>
   )

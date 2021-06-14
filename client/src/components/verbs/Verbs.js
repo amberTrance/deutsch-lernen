@@ -6,10 +6,13 @@ const Verbs = () => {
 
   return (
     <div className="center">
+      {list.length === 0 && (
+        <h2>Create your first verb</h2>
+      )}
       <Link to="/verbs/create" className="create-link">
         <button className="create-btn">create new</button>
       </Link>
-      <h2>Verbs</h2>
+      {list.length > 0 && <h2>Verbs</h2>}
       {!loading && list.map((verb, i) => {
         return (
           <Link 

@@ -43,11 +43,11 @@ function App() {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
 
-            <Route exact path='/verbs/create' component={CreateVerb} />
-            <Route exact path='/verbs' component={Verbs} />
-            <Route exact path='/verbs/:verb' component={Verb} />
-            <Route exact path='/verbs/:verb/conjugate' component={Conjugate} />
-            <Route exact path='/verbs/:verb/edit' component={EditVerb} />
+            <PrivateRoute exact path='/verbs/create' component={CreateVerb} />
+            <PrivateRoute exact path='/verbs' component={Verbs} />
+            <PrivateRoute exact path='/verbs/:verb' component={Verb} />
+            <PrivateRoute exact path='/verbs/:verb/conjugate' component={Conjugate} />
+            <PrivateRoute exact path='/verbs/:verb/edit' component={EditVerb} />
 
             <Route component={NotFound} />
           </Switch>

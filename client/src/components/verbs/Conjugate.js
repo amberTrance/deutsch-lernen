@@ -333,7 +333,7 @@ const Conjugate = () => {
                       className={inputClass.pastPerfect.ich}
                       name="ich"
                       onChange={e => handleInputChange(e, 'pastPerfect')}
-                      onKeyPress={e => handleEnter(e, 'presentPerfect')}
+                      onKeyPress={e => handleEnter(e, 'pastPerfect')}
                     />
                     </td>
                   </tr>
