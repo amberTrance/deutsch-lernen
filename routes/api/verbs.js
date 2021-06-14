@@ -33,6 +33,7 @@ router.get('/', verifyJWT, async (req, res) => {
   try {
     let verbs = await Verb.find({user: id}, {createdAt: 0, updatedAt: 0, user: 0}).sort('infinitive')
     let list = verbs.map(item => item.infinitive)
+    let count = list.length
     // Make separate arrays for each letter if unordered list length is larger than 0
     if (list.length > 0) {
       // Add the first item of the unordered list in the new list
@@ -50,7 +51,7 @@ router.get('/', verifyJWT, async (req, res) => {
       list = ordList
     }
 
-    res.json({list})
+    res.json({list, count})
   } catch(err) {
     res.status(500).json('Server Error')
   }

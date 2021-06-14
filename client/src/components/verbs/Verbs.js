@@ -2,7 +2,7 @@ import useFetchList from '../useFetchList'
 import { Link } from 'react-router-dom'
 
 const Verbs = () => {
-  const { data: list, loading} = useFetchList('/api/verbs')
+  const { data: list, loading, count} = useFetchList('/api/verbs')
 
   return (
     <div className="center">
@@ -20,7 +20,6 @@ const Verbs = () => {
               <h3>{arr[0][0].toUpperCase()}</h3>
               <ul>
                 {arr.map((verb,i) => {
-                  console.log(verb)
                   return (
                     <li>
                       <Link 
@@ -35,6 +34,7 @@ const Verbs = () => {
           )
         })}
       </div>
+      <h3 className="stats">Verbs Count: {count}</h3>
     </div>
   )
 }
