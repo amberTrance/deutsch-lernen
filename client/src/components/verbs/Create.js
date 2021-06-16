@@ -57,7 +57,6 @@ const Create = () => {
       .then(response => {
         if(response.data.errors !== undefined) {
           setErrors(response.data.errors)
-          console.log(response.data.errors)
         } else {
           window.location = `/verbs/${inputList.infinitive}`
         }

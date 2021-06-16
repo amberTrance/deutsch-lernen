@@ -34,7 +34,6 @@ const useFetchList = (url) => {
         if (error.response.data.auth === false) {
           window.location = '/login'
         }
-        setLoading(false)
        })
 
     }, [url])

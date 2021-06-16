@@ -25,12 +25,12 @@ const useFetchList = (url) => {
       })
       .catch(error => {
         setError(error)
+        console.log(error)
         // If the jason web token verification sends a value of false for
         // authentication, redirect user to login page
         if (error.response.data.auth === false) {
           window.location = '/login'
         } 
-        setLoading(false)
       })
 
     }, [url])

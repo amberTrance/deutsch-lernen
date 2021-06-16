@@ -17,8 +17,12 @@ const useFetchOne = (url) => {
 
       axios.get(url)
       .then(response => {
-        setData(...response.data.word)
-        setLoading(false)
+        if ((response.data.word).length === 0) {
+          window.location = '/notFound'
+        } else {
+          setData(...response.data.word)
+          setLoading(false)
+        }
       })
       .catch(error => {
         setError(error)
@@ -27,7 +31,6 @@ const useFetchOne = (url) => {
         if (error.response.data.auth === false) {
           window.location = '/login'
         }
-        setLoading(false)
       })
 
     }, [url])

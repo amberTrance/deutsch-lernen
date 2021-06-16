@@ -6,13 +6,13 @@ const Verbs = () => {
 
   return (
     <div className="center">
-      {list.length === 0 && (
+      {!loading && list.length === 0 && (
         <h2>Create your first verb</h2>
       )}
-      <Link to="/verbs/create" className="create-link">
+      {!loading && <Link to="/verbs/create" className="create-link">
         <button className="create-btn">create new</button>
-      </Link>
-      {list.length > 0 && <h2>Verbs</h2>}
+      </Link>}
+      {!loading && list.length > 0 && <h2>Verbs</h2>}
       <div className="verbDisplay">
         {!loading && list.map(arr => {
           return (
@@ -34,7 +34,7 @@ const Verbs = () => {
           )
         })}
       </div>
-      <h3 className="stats">Verbs Count: {count}</h3>
+      {!loading && list.length > 0 && <h3 className="stats">Verbs Count: {count}</h3>}
     </div>
   )
 }

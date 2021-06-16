@@ -5,7 +5,7 @@ import Buttons from './Buttons'
 const Verb = () => {
   const { verb } = useParams()
 
-  const { data : word, error, loading } = useFetchOne(`/api/verbs/${verb}`)
+  const { data : word, loading } = useFetchOne(`/api/verbs/${verb}`)
   
   return (
     <div className="container">
