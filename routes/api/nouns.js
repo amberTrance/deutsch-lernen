@@ -68,9 +68,7 @@ router.post('/create', verifyJWT, (req, res) => {
 
         if (result.length > 0) {
           return res.status(400).json({errors: [{msg: `'${inputList[i]['english']}' already
-          exists in the '${result[0]['category']}' collection`}]})
-
-          break
+            exists in the '${result[0]['category']}' collection`}]})
         }
         return res.status(400).json({errors: [{msg: 'Please fill up all the fields!'}]})
       }
