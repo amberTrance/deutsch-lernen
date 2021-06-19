@@ -59,10 +59,22 @@ router.post('/create', verifyJWT, (req, res) => {
     .then(result => {
       res.json('Success')
     })
-    .catch(err => {
-      res.status(400).json({errors: [{msg: `Your collection could not be saved. 
-      Make sure all your fields are completed and that 
-      none of the words you wrote already exists in another collection.`}]})
+    .catch(async err => {
+      
+      // If mongoose throws an error, check each word to see if it 
+      // already exists in another collection
+      for (let i = 0; i < inputList.length; i++) {
+        const result = await Noun.find({ english: inputList[i]['english'], user: req.user.id })
+
+        if (result.length > 0) {
+          return res.status(400).json({errors: [{msg: `'${inputList[i]['english']}' already
+          exists in the '${result[0]['category']}' collection`}]})
+
+          break
+        }
+        return res.status(400).json({errors: [{msg: 'Please fill up all the fields!'}]})
+      }
+
     })
 
 })
