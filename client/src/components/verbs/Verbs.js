@@ -9,9 +9,15 @@ const Verbs = () => {
       {!loading && list.length === 0 && (
         <h2>Create your first verb</h2>
       )}
-      {!loading && <Link to="/verbs/create" className="create-link">
-        <button className="create-btn">create new</button>
-      </Link>}
+      {!loading && 
+        <Link 
+          to="/verbs/create" 
+          className="create-link"
+          style={{marginBottom: "20px"}}
+        >
+          <button className="create-btn">create new</button>
+        </Link>
+      }
       {!loading && list.length > 0 && <h2>Verbs</h2>}
       <div className="verbDisplay">
         {!loading && list.map(arr => {
