@@ -21,7 +21,7 @@
 }
 
 .letter {
-  padding: 25px;
+  padding: 15px;
 }
 
 .verbDisplay {
@@ -41,4 +41,10 @@
 
 .letter h3 {
   text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid grey;
+}
+
+.letter ul {
+  padding: 5px 5px 0px 17px ;
 }
