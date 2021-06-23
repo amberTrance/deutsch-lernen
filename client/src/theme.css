@@ -4,6 +4,7 @@
   --font-2: #31b3ff;
   --deco: rgb(55, 55, 172);
   --violet: rgb(129, 15, 114);
+  --light-violet: rgb(209, 4, 182);
   --imp: rgb(206, 0, 86);
 }
 
@@ -143,17 +144,35 @@ ul {
 }
 
 /* login button */
-#login, #logout {
+#login {
   background-color: var(--violet);
   border-radius: 3px;
   border-style: none;
   color: white;
 }
+
+.popup {
+  border: 3px solid var(--violet);
+  border-radius: 3px;
+  background-color: var(--back);
+}
+
+.menu:hover {
+  background-color: var(--violet);
+  color: white;
+}
+.menu {
+  color: var(--light-violet);
+}
+.border {
+  border-bottom: 2px solid var(--violet);
+}
+
 #login:hover {
   background-color: var(--imp);
 }
 
-#logout:after {
+.popup:after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -165,7 +184,7 @@ ul {
 	border-top: 0;
 	border-right: 0;
 	margin-left: -20.5px;
-	margin-top: -10px;
+	margin-top: -11px;
 }
 
 .stats, .verb h3, .verbDisplay h3 {

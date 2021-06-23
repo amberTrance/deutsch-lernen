@@ -47,7 +47,13 @@ const Navbar = () => {
       >
         {username}
       </span>
-      { click && <button onClick={handleLogOut} className="nav-link" id="logout">Log out</button> }
+      { click &&
+        <div className="popup">
+          <span href="%PUBLIC_URL%/favicon.png"></span>
+          <Link to='/settings' className="menu border">Settings</Link>
+          <div onClick={handleLogOut} className="menu">Log out</div>
+        </div> 
+      }
     </div>
   )
 

@@ -6,6 +6,8 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Home from './components/layout/Home'
 import NotFound from './components/layout/NotFound'
+// Settings
+import Settings from './components/settings/Settings'
 // Nouns
 import Nouns from './components/nouns/Nouns'
 import Create from './components/nouns/Create'
@@ -43,11 +45,14 @@ function App() {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
 
+            <PrivateRoute exact path='/settings' component={Settings}/>
+
             <PrivateRoute exact path='/verbs/create' component={CreateVerb} />
             <PrivateRoute exact path='/verbs' component={Verbs} />
             <PrivateRoute exact path='/verbs/:verb' component={Verb} />
             <PrivateRoute exact path='/verbs/:verb/conjugate' component={Conjugate} />
             <PrivateRoute exact path='/verbs/:verb/edit' component={EditVerb} />
+
 
             <Route component={NotFound} />
           </Switch>

@@ -30,12 +30,20 @@ a {
   margin: 1px;
 }
 
-#logout {
+.popup {
   position: absolute;
-  top: 67px;
+  top: 68px;
   right: 10px;
 }
 
 #user:hover {
   cursor: pointer;
+}
+
+.menu {
+  padding: 10px 20px;
+  display: block;
+  cursor: pointer;
+  margin: -1px;
+  letter-spacing: 0.6px;
 }
