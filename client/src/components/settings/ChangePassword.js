@@ -58,6 +58,7 @@ const ChangePassword = () => {
           name="oldPass"
           className="auth-input newPass"
           onChange={(e) => onChange(e)}
+          required
         />
 
         <label htmlFor="newPass">New Password:</label>
@@ -66,6 +67,7 @@ const ChangePassword = () => {
           name="newPass"
           className="auth-input newPass"
           onChange={(e) => onChange(e)}
+          required
         />
 
         <label htmlFor="newPassRepeat">New Password Again:</label>
@@ -74,6 +76,7 @@ const ChangePassword = () => {
           name="newPassRepeat"
           className="auth-input newPass"
           onChange={(e) => onChange(e)}
+          required
         />
 
         <input 
