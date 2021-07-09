@@ -1,7 +1,9 @@
+import ChangePassword from './ChangePassword'
+
 const Settings = () => {
   return (  
     <div className="center">
-      <h2>Settings</h2>
+      <ChangePassword />
     </div>
   )
 }

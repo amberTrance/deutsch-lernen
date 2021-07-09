@@ -136,3 +136,18 @@ li {
 #login:active {
   transform: scale(0.98);
 }
+
+.newPass {
+  display:block;
+  padding: 2px;
+}
+
+.settings {
+  border: solid grey 1px;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.settings h3 {
+  padding: 10px 0px
+}

@@ -48,7 +48,8 @@ button {
   border: 1px solid var(--font)
 }
 
-.btn:hover, .auth-btn:hover {
+.btn:hover, 
+.auth-btn:hover {
   background-color: var(--font-2);
 }
 
@@ -71,7 +72,9 @@ th p,
   border-radius: 3px;
 }
 
-.auth h2, .create-btn {
+.auth h2, 
+.create-btn,
+.settings h3 {
   color: var(--font-2);
 }
 
