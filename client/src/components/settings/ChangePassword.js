@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
+import axios from 'axios'
 
 const ChangePassword = () => {
   const [inputData, setInputData] = useState({
@@ -7,10 +8,30 @@ const ChangePassword = () => {
     newPassRepeat: ''
   })
 
+  const [errors, setErrors] = useState([])
+  const [success, setSuccess] = useState('')
+
   const onSubmit = (e) => {
     e.preventDefault()
 
-    console.log(inputData)
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const body = JSON.stringify(inputData)
+
+    if (inputData.newPass !== inputData.newPassRepeat) {
+      setErrors([{msg: 'Passwords do not match!'}])
+    } else {
+      axios.put('/api/settings/changePass', body, config)
+      .then(res => {
+        setSuccess(res.data)
+        setErrors([])
+      })
+      .catch(err => setErrors(err.response.data.errors))
+    }
   }
 
   const onChange = (e) => {
@@ -18,8 +39,18 @@ const ChangePassword = () => {
   }
 
   return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <div className="settings">
+    <Fragment>
+      { errors && errors.map((error,i) => 
+              <div 
+                className="msg error"
+                key={`${i}-error`}>{error.msg}
+              </div>
+        )}
+      { success && <div className="msg success">{success}</div>}
+      <form 
+        onSubmit={(e) => onSubmit(e)}
+        className="settings"
+      >
         <h3>Change Password</h3>
         <label htmlFor="oldPass">Old Password:</label>
         <input 
@@ -50,8 +81,8 @@ const ChangePassword = () => {
           value="submit"
           className="auth-btn"
         />
-      </div>
-    </form> 
+      </form> 
+    </Fragment>
   )
 }
  
