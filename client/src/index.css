@@ -153,3 +153,24 @@ li {
 .settings h3 {
   padding: 10px 0px
 }
+
+.deleteAcc {
+  padding: 4px 10px;
+  font-size: 15px;
+  border-radius: 3px;
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
+
+.deleteAccPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 100px;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  transform: translate(-50%, -50%)
+}

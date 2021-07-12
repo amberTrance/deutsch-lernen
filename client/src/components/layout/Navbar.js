@@ -49,7 +49,6 @@ const Navbar = () => {
       </span>
       { click &&
         <div className="popup">
-          <span href="%PUBLIC_URL%/favicon.png"></span>
           <Link to='/settings' className="menu border">Settings</Link>
           <div onClick={handleLogOut} className="menu">Log out</div>
         </div> 

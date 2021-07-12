@@ -198,6 +198,21 @@ ul {
   color: var(--imp);
 }
 
+.deleteAcc {
+  border-color: var(--imp);
+  color: var(--imp);
+}
+
+.deleteAcc:hover {
+  background-color: var(--imp);
+  color: white;
+}
+
+.deleteAccPopup {
+  background-color: var(--back);
+  border: 2px grey solid;
+}
+
 /* Autofill of form input fields */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

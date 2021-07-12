@@ -47,10 +47,7 @@ const ChangePassword = () => {
               </div>
         )}
       { success && <div className="msg success">{success}</div>}
-      <form 
-        onSubmit={(e) => onSubmit(e)}
-        className="settings"
-      >
+      <form onSubmit={(e) => onSubmit(e)}>
         <h3>Change Password</h3>
         <label htmlFor="oldPass">Old Password:</label>
         <input 

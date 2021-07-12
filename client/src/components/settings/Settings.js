@@ -1,9 +1,13 @@
 import ChangePassword from './ChangePassword'
+import DeleteProfile from './DeleteProfile'
 
 const Settings = () => {
   return (  
     <div className="center">
-      <ChangePassword />
+      <div className="settings">
+        <ChangePassword />
+        <DeleteProfile />
+      </div>
     </div>
   )
 }
