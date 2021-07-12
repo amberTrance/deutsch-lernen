@@ -7,7 +7,7 @@ module.exports = function(req, res, next) {
   if (!token) {
     res.status(401).json({auth: false, msg: 'No token'})
   } else {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, config.get('jwtSecret'), (err, decoded) => {
       if (err) {
         res.status(401).json({ auth: false, msg: 'Invalid token'})
       } else {

@@ -78,7 +78,7 @@ const ChangePassword = () => {
 
         <input 
           type="submit"
-          value="submit"
+          value="Submit"
           className="auth-btn"
         />
       </form> 

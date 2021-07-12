@@ -57,12 +57,10 @@ router.post('/signup',
       }
     }
 
-    // Remove at deploy
-
     jwt.sign(
       payload, 
-      process.env.JWT_SECRET,
-      { expiresIn: 3600 },
+      config.get('jwtSecret'),
+      { expiresIn: 108000 },
       (err, token) => {
         if (err) throw err
         res.json({ token })
@@ -110,8 +108,8 @@ router.post('/login',
   
       jwt.sign(
         payload, 
-        process.env.JWT_SECRET,
-        { expiresIn: 3600 },
+        config.get('jwtSecret'),
+        { expiresIn: 108000 },
         (err, token) => {
           if (err) { throw err }
           res.json({ token })

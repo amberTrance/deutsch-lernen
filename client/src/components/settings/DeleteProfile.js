@@ -3,10 +3,17 @@ import { useState, Fragment } from 'react'
 const DeleteProfile = () => {
 
   const [click, setClick] = useState(false)
+  const [overlay, setOverlay] = useState('')
 
   const handleClick = (str) => {
-    if (str === 'delete') setClick(true)
-    if (str === 'cancel') setClick(false)
+    if (str === 'delete') {
+      setClick(true)
+      setOverlay('overlay')
+    }
+    if (str === 'cancel') {
+      setClick(false)
+      setOverlay('')
+    }
   }
 
   return (  
@@ -30,6 +37,7 @@ const DeleteProfile = () => {
           onClick={() => handleClick('cancel')}
         >CANCEL</button>
       </div>}
+      <div className={overlay}></div>
     </Fragment>
   )
 }
