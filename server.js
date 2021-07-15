@@ -6,8 +6,8 @@ const path = require('path')
 const app = express()
 
 const PORT = process.env.PORT || 5000
-const uri = config.get("mongoURI")
-// const uri = process.env.MONGODB_URI;
+// const uri = config.get("mongoURI")
+const uri = process.env.MONGODB_URI;
 
 // Body parser
 app.use(express.json({ extended: false }))

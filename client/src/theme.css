@@ -210,7 +210,7 @@ ul {
 
 .deleteAccPopup {
   background-color: var(--back);
-  border: 2px grey solid;
+  border: 1px grey solid;
 }
 
 /* Autofill of form input fields */

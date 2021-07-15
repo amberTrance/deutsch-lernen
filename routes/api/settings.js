@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/User')
+const Noun = require('../../models/Noun')
+const Verb = require('../../models/Verb')
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const verifyJWT = require('../../middleware/verifyJWT')
@@ -44,5 +46,31 @@ router.put('/changePass', verifyJWT,
     })
 })
 
+
+router.delete('/delete', verifyJWT, async (req, res) => {
+  const {id} = req.user
+
+  const {password} = req.body
+
+  let user = await User.findOne({_id : id})
+  
+
+  const isMatch = await bcrypt.compare(password, user.password)
+
+  if (!isMatch) {
+    return res.status(400).json({msg: 'Password is incorrect!'})
+  }
+
+  try {
+    await Noun.deleteMany({user: id})
+    await Verb.deleteMany({user: id})
+    await User.deleteOne({_id: id})
+
+    return res.json({msg: 'User and connected data successfully deleted!'})
+  } catch (err) {
+    console.log(err)
+  }
+
+})
 
 module.exports = router
